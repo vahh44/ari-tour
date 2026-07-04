@@ -1,0 +1,2861 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Авторские туры с Аришей. Дагестан, Грузия, Армения, Осетия, Чечня, Узбекистан, Териберка. Маленькие группы, всё включено, 700+ туристов за 3 года.">
+<meta property="og:title" content="Ари тур — авторские туры, после которых не хочется домой">
+<meta property="og:description" content="Маленькие группы, честное «всё включено» и 8 направлений: Кавказ, Закавказье, Узбекистан, Териберка.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="./hero-bg.jpg">
+<meta name="theme-color" content="#FDFAEF">
+<title>Ари тур — авторские туры, после которых не хочется домой</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏔</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Golos+Text:wght@400;500;600;700&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* ================================================================
+   АРИ ТУР · дизайн-система «мёд и полынь»
+   cream #FDFAEF · sand #F4EDD8 · sun #EBA51C · khaki #6B7048
+   display: Yeseva One · body: Golos Text · рукопись: Caveat
+   сигнатура: билет с перфорацией + страница-тура «посадочный талон»
+   ================================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+
+:root {
+  --cream: #FDFAEF;
+  --sand: #F4EDD8;
+  --card: #FFFFFF;
+  --line: #E8DFC6;
+  --ink: #33341C;
+  --ink-soft: #5B5A3C;
+  --stone: #98916F;
+  --sun: #EBA51C;            /* яркий медовый — фигуры, штрих, точки, цена */
+  --sun-text: #9C6608;       /* читаемый янтарь для текста на светлом */
+  --sun-soft: #FBEAC2;
+  --sun-grad: linear-gradient(135deg, #F4B833 0%, #E39412 100%);
+  --khaki: #6B7048;          /* хаки — вторичное действие, структура */
+  --khaki-hot: #7C8253;
+  --khaki-deep: #3D4327;     /* тёмные секции */
+  --olive: #545A34;
+  --gold: #E0A93E;           /* звёзды */
+  --khaki-grad: linear-gradient(135deg, #7A8050 0%, #565C33 100%);
+  --shadow-card: 0 24px 60px -28px rgba(51,52,28,0.26);
+  --shadow-sun: 0 14px 38px -12px rgba(227,148,18,0.5);
+  --r-sm: 10px;
+  --r: 18px;
+  --r-lg: 28px;
+  --container: 1240px;
+  --space: clamp(84px, 10vw, 150px);
+}
+
+::selection { background: rgba(235,165,28,0.24); color: var(--ink); }
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--sand); }
+::-webkit-scrollbar-thumb { background: #D6C79E; border-radius: 10px; border: 2px solid var(--sand); }
+* { scrollbar-width: thin; scrollbar-color: #D6C79E var(--sand); }
+
+body {
+  font-family: 'Golos Text', -apple-system, sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.65;
+  overflow-x: clip;
+}
+img { max-width: 100%; display: block; }
+button, input, textarea, select { font: inherit; color: inherit; }
+a { color: inherit; text-decoration: none; }
+
+/* ---------- ТИПОГРАФИКА ---------- */
+.display { font-family: 'Yeseva One', serif; font-weight: 400; }
+.h-section {
+  font-family: 'Yeseva One', serif;
+  font-weight: 400;
+  font-size: clamp(30px, 4.4vw, 54px);
+  line-height: 1.16;
+  letter-spacing: 0.005em;
+}
+.h-section em { font-style: normal; color: var(--sun-text); }
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--sun-text);
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.eyebrow::before { content: ''; width: 30px; height: 2px; background: var(--sun); border-radius: 2px; }
+.hand { font-family: 'Caveat', cursive; font-weight: 500; }
+
+/* ---------- LAYOUT ---------- */
+.container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+section { padding: var(--space) 0; position: relative; }
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 64px;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.section-head__text { max-width: 680px; }
+.section-head__text .eyebrow { margin-bottom: 18px; }
+.section-head__desc {
+  font-size: 16px;
+  color: var(--ink-soft);
+  margin-top: 22px;
+  max-width: 560px;
+}
+
+/* ---------- КНОПКИ ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  white-space: nowrap;
+  line-height: 1.3;
+}
+.btn:focus-visible, a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--khaki);
+  outline-offset: 3px;
+}
+.btn-primary {
+  background: var(--sun-grad);
+  color: var(--ink);
+  box-shadow: var(--shadow-sun);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 20px 48px -12px rgba(227,148,18,0.62); }
+.btn-primary:active { transform: translateY(0); }
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+.btn-ghost:hover { border-color: var(--khaki); color: var(--khaki); background: rgba(107,112,72,0.06); }
+.btn-arrow::after { content: '→'; transition: transform 0.3s; }
+.btn:hover.btn-arrow::after { transform: translateX(4px); }
+
+/* ---------- NAV ---------- */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 14px 0;
+  background: transparent;
+  transition: background 0.35s, box-shadow 0.35s, padding 0.35s;
+}
+.nav.scrolled, .nav.menu-open {
+  background: rgba(253,250,239,0.94);
+  backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: 0 1px 0 var(--line), 0 8px 30px rgba(51,52,28,0.06);
+  padding: 10px 0;
+}
+.nav__inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Yeseva One', serif;
+  font-size: 19px;
+  color: #FFF;
+  transition: color 0.35s;
+  text-shadow: 0 1px 14px rgba(0,0,0,0.3);
+}
+.nav.scrolled .logo, .nav.menu-open .logo { color: var(--ink); text-shadow: none; }
+.logo__mark {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(255,255,255,0.85);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+  flex-shrink: 0;
+  background: var(--sun-grad);
+  display: grid; place-items: center;
+  color: var(--ink); font-size: 15px;
+}
+.logo__mark img { width: 100%; height: 100%; object-fit: cover; }
+.nav__links { display: flex; gap: 30px; }
+.nav__links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.94);
+  transition: color 0.2s;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.25);
+}
+.nav.scrolled .nav__links a { color: var(--ink-soft); text-shadow: none; }
+.nav__links a:hover { color: var(--sun); }
+.nav.scrolled .nav__links a:hover { color: var(--sun-text); }
+
+.nav__burger {
+  display: none;
+  width: 44px; height: 44px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  z-index: 102;
+}
+.nav__burger span, .nav__burger span::before, .nav__burger span::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 10px;
+  width: 24px; height: 2px;
+  border-radius: 2px;
+  background: #FFF;
+  transition: transform 0.3s, background 0.3s, top 0.3s;
+}
+.nav.scrolled .nav__burger span, .nav.scrolled .nav__burger span::before, .nav.scrolled .nav__burger span::after,
+.nav.menu-open .nav__burger span, .nav.menu-open .nav__burger span::before, .nav.menu-open .nav__burger span::after { background: var(--ink); }
+.nav__burger span { top: 21px; }
+.nav__burger span::before { top: -7px; left: 0; }
+.nav__burger span::after { top: 7px; left: 0; }
+.nav.menu-open .nav__burger span { background: transparent !important; }
+.nav.menu-open .nav__burger span::before { top: 0; transform: rotate(45deg); }
+.nav.menu-open .nav__burger span::after { top: 0; transform: rotate(-45deg); }
+
+@media (max-width: 900px) {
+  .nav__links {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    padding: 92px 28px 32px;
+    background: var(--cream);
+    box-shadow: 0 30px 60px rgba(51,52,28,0.14);
+    flex-direction: column;
+    gap: 4px;
+    transform: translateY(-110%);
+    transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+    z-index: 101;
+  }
+  .nav.menu-open .nav__links { transform: translateY(0); }
+  .nav__links a {
+    color: var(--ink) !important;
+    text-shadow: none !important;
+    font-family: 'Yeseva One', serif;
+    font-size: 24px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .nav__burger { display: block; }
+  .nav__cta { display: none; }
+}
+
+/* ---------- HERO ---------- */
+.hero {
+  min-height: 100svh;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  padding: 0;
+}
+.hero__bg {
+  position: absolute;
+  inset: -8% 0;
+  background: url('./hero-bg.jpg') center 35%/cover no-repeat, linear-gradient(180deg, #C7B27C 0%, #6B7048 100%);
+  will-change: transform;
+  animation: heroZoom 18s ease-out forwards;
+}
+@keyframes heroZoom {
+  from { transform: scale(1.08); }
+  to   { transform: scale(1); }
+}
+.hero__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(253,250,239,0.64) 0%, rgba(253,250,239,0.22) 42%, rgba(253,250,239,0) 68%),
+    linear-gradient(180deg, rgba(30,34,20,0.32) 0%, rgba(30,34,20,0.05) 32%, rgba(253,250,239,0) 52%, rgba(253,250,239,0.95) 88%, var(--cream) 100%);
+}
+.hero__glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(58% 46% at 72% 58%, rgba(244,184,51,0.32), transparent 70%);
+  mix-blend-mode: soft-light;
+  animation: dawnGlow 8s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes dawnGlow { from { opacity: 0.45; } to { opacity: 1; } }
+.hero__inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding-top: 22vh;
+  padding-bottom: 56px;
+}
+.hero__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 18px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.9);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 28px;
+  box-shadow: 0 6px 24px rgba(51,52,28,0.10);
+}
+.hero__pill__dot {
+  width: 8px; height: 8px;
+  background: var(--khaki);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(107,112,72,0.24);
+  animation: pulse 2.2s infinite;
+}
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+.hero h1 {
+  font-family: 'Yeseva One', serif;
+  font-weight: 400;
+  font-size: clamp(38px, 6.2vw, 86px);
+  line-height: 1.1;
+  color: var(--ink);
+  max-width: 16ch;
+  margin-bottom: 28px;
+  text-shadow: 0 2px 40px rgba(253,250,239,0.85);
+}
+/* рукописный росчерк под словом */
+.u-stroke { position: relative; white-space: nowrap; }
+.u-stroke svg {
+  position: absolute;
+  left: -3%; bottom: -0.14em;
+  width: 106%; height: 0.34em;
+  overflow: visible;
+  pointer-events: none;
+}
+.u-stroke path {
+  fill: none;
+  stroke: var(--sun);
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 240;
+  stroke-dashoffset: 240;
+  transition: stroke-dashoffset 1.1s cubic-bezier(0.22,1,0.36,1) 1s;
+}
+.hero.loaded .u-stroke path { stroke-dashoffset: 0; }
+.hero__sub {
+  font-size: clamp(16px, 1.5vw, 19px);
+  color: var(--ink-soft);
+  max-width: 520px;
+  margin-bottom: 36px;
+  line-height: 1.6;
+  text-shadow: 0 1px 22px rgba(253,250,239,0.95), 0 0 10px rgba(253,250,239,0.8);
+}
+.hero__cta { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 64px; }
+.hero__stats {
+  display: flex;
+  gap: clamp(32px, 6vw, 84px);
+  flex-wrap: wrap;
+  padding-top: 32px;
+  border-top: 1px solid rgba(51,52,28,0.16);
+  max-width: 760px;
+}
+.hero__stat__num {
+  font-family: 'Yeseva One', serif;
+  font-size: clamp(28px, 3.2vw, 40px);
+  color: var(--ink);
+}
+.hero__stat__num span { color: var(--sun-text); }
+.hero__stat__label {
+  font-size: 12px;
+  color: var(--stone);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+/* стартовая хореография hero */
+.hero__pill, .hero h1, .hero__sub, .hero__cta, .hero__stats {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 1s cubic-bezier(0.22,1,0.36,1), transform 1s cubic-bezier(0.22,1,0.36,1);
+}
+.hero.loaded .hero__pill  { opacity: 1; transform: none; transition-delay: 0.1s; }
+.hero.loaded h1           { opacity: 1; transform: none; transition-delay: 0.25s; }
+.hero.loaded .hero__sub   { opacity: 1; transform: none; transition-delay: 0.45s; }
+.hero.loaded .hero__cta   { opacity: 1; transform: none; transition-delay: 0.6s; }
+.hero.loaded .hero__stats { opacity: 1; transform: none; transition-delay: 0.75s; }
+
+/* ---------- НАПРАВЛЕНИЯ ---------- */
+.directions__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+@media (max-width: 1100px) { .directions__grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 800px)  { .directions__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 500px)  { .directions__grid { grid-template-columns: 1fr; } }
+
+.dir-card {
+  position: relative;
+  aspect-ratio: 4/5;
+  border-radius: var(--r);
+  overflow: hidden;
+  cursor: pointer;
+  color: #FFF;
+  background: var(--sand);
+}
+.dir-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.22,1,0.36,1);
+}
+.dir-card:hover img { transform: scale(1.06); }
+.dir-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20,24,12,0.02) 40%, rgba(20,24,12,0.42) 72%, rgba(20,24,12,0.82) 100%);
+}
+.dir-card__content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.dir-card__name {
+  font-family: 'Yeseva One', serif;
+  font-size: 24px;
+  margin-bottom: 4px;
+  text-shadow: 0 2px 14px rgba(0,0,0,0.35);
+}
+.dir-card__route {
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.84);
+  margin-bottom: 14px;
+}
+.dir-card__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(255,255,255,0.36);
+}
+.dir-card__price { font-size: 15px; font-weight: 600; }
+.dir-card__price small {
+  display: block;
+  font-size: 10px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.72);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.dir-card__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.92);
+  color: var(--ink);
+  font-size: 12.5px;
+  font-weight: 600;
+  transition: background 0.3s, color 0.3s, transform 0.3s;
+}
+.dir-card:hover .dir-card__more { background: var(--sun); color: var(--ink); transform: translateX(2px); }
+.dir-card__more::after { content: '→'; transition: transform 0.3s; }
+.dir-card:hover .dir-card__more::after { transform: translateX(3px); }
+
+/* ---------- ПОЛАРОИДНАЯ ЛЕНТА ---------- */
+.polaroids {
+  padding: calc(var(--space) * 0.7) 0;
+  background: var(--sand);
+  overflow: hidden;
+}
+.polaroids__head {
+  text-align: center;
+  margin-bottom: 48px;
+  padding: 0 24px;
+}
+.polaroids__head .hand {
+  font-size: clamp(28px, 3.4vw, 42px);
+  color: var(--ink);
+}
+.polaroids__head .hand em { font-style: normal; color: var(--sun-text); }
+.polaroids__track {
+  display: flex;
+  gap: clamp(16px, 3vw, 36px);
+  justify-content: center;
+  padding: 20px 24px 30px;
+  flex-wrap: nowrap;
+}
+.polaroid {
+  background: #FFF;
+  padding: 12px 12px 46px;
+  box-shadow: 0 16px 40px -14px rgba(51,52,28,0.32);
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), box-shadow 0.45s;
+  flex: 0 0 auto;
+  width: clamp(170px, 17vw, 230px);
+  position: relative;
+}
+.polaroid:hover {
+  transform: rotate(0deg) translateY(-10px) scale(1.04);
+  box-shadow: 0 30px 60px -18px rgba(51,52,28,0.4);
+  z-index: 3;
+}
+.polaroid img {
+  aspect-ratio: 1;
+  object-fit: cover;
+  width: 100%;
+  filter: saturate(1.05);
+}
+.polaroid figcaption {
+  position: absolute;
+  bottom: 10px; left: 0; right: 0;
+  text-align: center;
+  font-family: 'Caveat', cursive;
+  font-size: 20px;
+  color: var(--ink-soft);
+}
+@media (max-width: 900px) {
+  .polaroids__track { justify-content: flex-start; overflow-x: auto; scrollbar-width: none; }
+  .polaroids__track::-webkit-scrollbar { display: none; }
+}
+
+/* ---------- ОБ АРИНЕ ---------- */
+.about__inner {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: clamp(40px, 6vw, 90px);
+  align-items: center;
+}
+@media (max-width: 900px) { .about__inner { grid-template-columns: 1fr; } }
+.about__photo-wrap { position: relative; }
+.about__photo {
+  aspect-ratio: 4/5;
+  border-radius: 200px 200px var(--r) var(--r);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+.about__photo img { width: 100%; height: 100%; object-fit: cover; }
+.about__badge {
+  position: absolute;
+  bottom: 28px;
+  right: -24px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: var(--shadow-card);
+}
+@media (max-width: 500px) { .about__badge { right: 8px; } }
+.about__badge__num {
+  font-family: 'Yeseva One', serif;
+  font-size: 34px;
+  color: var(--sun-text);
+  line-height: 1;
+}
+.about__badge__text { font-size: 13px; color: var(--ink-soft); line-height: 1.35; }
+.about__quote {
+  font-family: 'Yeseva One', serif;
+  font-size: clamp(21px, 2.3vw, 30px);
+  line-height: 1.42;
+  margin: 28px 0;
+}
+.about__quote em { font-style: normal; color: var(--sun-text); }
+.about__text { color: var(--ink-soft); font-size: 16px; max-width: 560px; }
+.about__signature {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 32px;
+  padding-top: 30px;
+  border-top: 1px solid var(--line);
+}
+.about__signature .hand { font-size: 34px; color: var(--sun-text); }
+.about__signature__role { color: var(--stone); font-size: 13.5px; }
+
+/* ---------- MARQUEE ---------- */
+.marquee {
+  padding: 26px 0;
+  background: var(--khaki-deep);
+  color: var(--cream);
+  overflow: hidden;
+}
+.marquee__track {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  white-space: nowrap;
+  animation: marquee 36s linear infinite;
+  will-change: transform;
+}
+.marquee__item {
+  font-family: 'Yeseva One', serif;
+  font-size: clamp(24px, 3.2vw, 42px);
+  display: inline-flex;
+  align-items: center;
+  gap: 48px;
+}
+.marquee__item span {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--sun);
+  flex-shrink: 0;
+}
+@keyframes marquee { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
+.marquee:hover .marquee__track { animation-play-state: paused; }
+
+/* ---------- ДЛЯ КОГО ---------- */
+.audience__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+@media (max-width: 900px) { .audience__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .audience__grid { grid-template-columns: 1fr; } }
+.aud-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 30px 26px;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+.aud-card:hover {
+  border-color: rgba(107,112,72,0.5);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+}
+.aud-card__num {
+  font-family: 'Caveat', cursive;
+  font-size: 30px;
+  color: var(--sun-text);
+  line-height: 1;
+  margin-bottom: 18px;
+}
+.aud-card__title {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  line-height: 1.35;
+}
+.aud-card__desc { font-size: 14px; color: var(--stone); }
+
+/* ---------- ВСЁ ВКЛЮЧЕНО ---------- */
+.included { background: var(--sand); }
+.included__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+@media (max-width: 1000px) { .included__grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 600px)  { .included__grid { grid-template-columns: repeat(2, 1fr); } }
+.inc-item {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 24px 20px;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.inc-item:hover { border-color: rgba(107,112,72,0.5); transform: translateY(-3px); }
+.inc-item__icon { font-size: 26px; margin-bottom: 14px; display: block; }
+.inc-item__title { font-size: 14px; font-weight: 600; margin-bottom: 3px; }
+.inc-item__desc { font-size: 12px; color: var(--stone); line-height: 1.5; }
+.included__note {
+  margin-top: 36px;
+  padding: 26px 30px;
+  background: var(--card);
+  border-left: 3px solid var(--sun);
+  border-radius: 0 var(--r) var(--r) 0;
+  font-size: 15px;
+  color: var(--ink-soft);
+  box-shadow: var(--shadow-card);
+}
+
+/* ---------- КАТАЛОГ ТУРОВ · билеты ---------- */
+.tours__filter { display: flex; gap: 10px; margin-bottom: 44px; flex-wrap: wrap; }
+.tours__chip {
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--ink-soft);
+}
+.tours__chip:hover { border-color: var(--khaki); color: var(--khaki); }
+.tours__chip.active { background: var(--khaki-deep); color: var(--cream); border-color: var(--khaki-deep); }
+
+.tours__layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 32px;
+  align-items: start;
+}
+@media (max-width: 1000px) { .tours__layout { grid-template-columns: 1fr; } }
+.tours__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+@media (max-width: 700px) { .tours__grid { grid-template-columns: 1fr; } }
+
+/* билет: карточка с перфорацией и отрывным корешком */
+.tour-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  transition: transform 0.35s, box-shadow 0.35s, border-color 0.35s;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.tour-card:hover {
+  border-color: rgba(107,112,72,0.42);
+  transform: translateY(-5px) rotate(-0.4deg);
+  box-shadow: var(--shadow-card);
+}
+.tour-card.hidden { display: none; }
+.tour-card__img {
+  aspect-ratio: 16/10;
+  position: relative;
+  overflow: hidden;
+  background: var(--sand);
+  border-radius: var(--r) var(--r) 0 0;
+}
+.tour-card__img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.22,1,0.36,1);
+}
+.tour-card:hover .tour-card__img img { transform: scale(1.05); }
+.tour-card__badge {
+  position: absolute;
+  top: 14px; left: 14px;
+  padding: 7px 14px;
+  background: rgba(253,250,239,0.94);
+  color: var(--ink);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  z-index: 2;
+  backdrop-filter: blur(8px);
+}
+.tour-card__badge--hot { background: var(--sun); color: var(--ink); }
+.tour-card__body { padding: 24px 26px 20px; flex: 1; }
+.tour-card__title { font-family: 'Yeseva One', serif; font-size: 21px; margin-bottom: 6px; }
+.tour-card__route { font-size: 13px; color: var(--stone); margin-bottom: 16px; }
+.tour-card__dates {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  padding: 12px 14px;
+  background: var(--sand);
+  border-radius: var(--r-sm);
+}
+.tour-card__dot {
+  width: 8px; height: 8px;
+  background: var(--khaki);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(107,112,72,0.18);
+  flex-shrink: 0;
+}
+/* отрывной корешок билета */
+.ticket__stub {
+  position: relative;
+  border-top: 2px dashed var(--line);
+  padding: 18px 26px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.ticket__stub::before, .ticket__stub::after {
+  content: '';
+  position: absolute;
+  top: -12px;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--cream);
+  border: 1px solid var(--line);
+}
+.ticket__stub::before { left: -12px; }
+.ticket__stub::after { right: -12px; }
+.tour-card__price-old { font-size: 13px; color: var(--stone); text-decoration: line-through; }
+.tour-card__price { font-family: 'Yeseva One', serif; font-size: 22px; }
+.ticket__actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.tour-card__more {
+  padding: 11px 16px;
+  background: transparent;
+  color: var(--khaki);
+  border: 1px solid rgba(107,112,72,0.4);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s;
+  white-space: nowrap;
+}
+.tour-card__more:hover { background: rgba(107,112,72,0.08); border-color: var(--khaki); }
+.tour-card__btn {
+  padding: 11px 18px;
+  background: var(--sun-grad);
+  color: var(--ink);
+  border: none;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s;
+  white-space: nowrap;
+}
+.tour-card__btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-sun); }
+
+/* сайдбар «ближайшие заезды» */
+.upcoming {
+  background: var(--khaki-deep);
+  color: var(--cream);
+  border-radius: var(--r-lg);
+  padding: 30px 28px;
+  position: sticky;
+  top: 96px;
+}
+.upcoming__title {
+  font-family: 'Yeseva One', serif;
+  font-size: 19px;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.upcoming__live {
+  width: 8px; height: 8px;
+  background: var(--sun);
+  border-radius: 50%;
+  animation: pulse 1.6s infinite;
+}
+.upcoming__sub {
+  font-size: 11px;
+  color: rgba(253,250,239,0.55);
+  margin-bottom: 22px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.upcoming__item { padding: 16px 0; border-bottom: 1px dashed rgba(253,250,239,0.2); }
+.upcoming__item:last-of-type { border-bottom: none; }
+.upcoming__date { font-family: 'Yeseva One', serif; font-size: 18px; margin-bottom: 2px; }
+.upcoming__where { font-size: 13px; color: rgba(253,250,239,0.65); margin-bottom: 10px; }
+.upcoming__progress {
+  height: 4px;
+  background: rgba(253,250,239,0.16);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+.upcoming__progress__fill { height: 100%; background: var(--sun-grad); border-radius: 999px; }
+.upcoming__seats {
+  font-size: 11px;
+  color: rgba(253,250,239,0.55);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.upcoming__seats strong { color: var(--sun); font-weight: 600; }
+.upcoming__note {
+  margin-top: 22px;
+  padding: 14px 16px;
+  background: rgba(253,250,239,0.08);
+  border-radius: var(--r-sm);
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(253,250,239,0.8);
+}
+.upcoming__note strong { color: var(--cream); }
+
+/* ---------- ОТЗЫВЫ ---------- */
+.reviews__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+@media (max-width: 1000px) { .reviews__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 700px)  { .reviews__grid { grid-template-columns: 1fr; } }
+.review-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 30px 28px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.review-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); }
+.review-card__stars { color: var(--gold); font-size: 14px; letter-spacing: 5px; margin-bottom: 16px; }
+.review-card__text {
+  font-size: 15px;
+  color: var(--ink-soft);
+  line-height: 1.65;
+  flex: 1;
+  margin-bottom: 24px;
+}
+.review-card__author {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+.review-card__avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--sun-soft);
+  border: 1px solid var(--line);
+  display: grid; place-items: center;
+  font-family: 'Yeseva One', serif;
+  color: var(--sun-text);
+}
+.review-card__name { font-size: 14px; font-weight: 600; }
+.review-card__meta { font-size: 12px; color: var(--stone); }
+.review-card--video {
+  position: relative;
+  overflow: hidden;
+  min-height: 280px;
+  justify-content: flex-end;
+  cursor: pointer;
+  border: none;
+  color: #FFF;
+}
+.review-card--video img.review-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s;
+}
+.review-card--video:hover img.review-bg { transform: scale(1.05); }
+.review-card--video::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20,24,12,0.1), rgba(20,24,12,0.78));
+  z-index: 1;
+}
+.review-card--video > * { position: relative; z-index: 2; }
+.review-card__play {
+  position: absolute;
+  top: 22px; right: 22px;
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  background: rgba(253,250,239,0.95);
+  display: grid; place-items: center;
+  font-size: 16px;
+  color: var(--sun-text);
+  z-index: 3;
+  transition: transform 0.3s;
+}
+.review-card--video:hover .review-card__play { transform: scale(1.12); }
+.review-card__vlabel { font-size: 13px; opacity: 0.75; margin-bottom: 8px; }
+.review-card__vquote { font-family: 'Yeseva One', serif; font-size: 18px; line-height: 1.42; }
+.review-card__vwho { font-size: 13px; opacity: 0.75; margin-top: 10px; }
+
+/* ---------- УСЛУГИ ---------- */
+.services__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+@media (max-width: 900px) { .services__grid { grid-template-columns: 1fr; } }
+.service-card {
+  position: relative;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  padding: clamp(32px, 4vw, 52px);
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: #FFF;
+  transition: transform 0.35s, box-shadow 0.35s;
+}
+.service-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-card); }
+.service-card img.service-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s;
+}
+.service-card:hover img.service-bg { transform: scale(1.05); }
+.service-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(200deg, rgba(20,24,12,0.06) 20%, rgba(20,24,12,0.82) 90%);
+  z-index: 1;
+}
+.service-card > * { position: relative; z-index: 2; }
+.service-card__tag {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #F4D58A;
+  margin-bottom: 14px;
+}
+.service-card__title { font-family: 'Yeseva One', serif; font-size: clamp(24px, 2.6vw, 32px); line-height: 1.22; margin-bottom: 14px; }
+.service-card__desc { font-size: 15px; color: rgba(255,255,255,0.86); margin-bottom: 22px; max-width: 46ch; }
+.service-card__features { list-style: none; margin-bottom: 26px; }
+.service-card__features li {
+  padding: 5px 0 5px 24px;
+  position: relative;
+  font-size: 14px;
+  color: rgba(255,255,255,0.88);
+}
+.service-card__features li::before { content: '—'; position: absolute; left: 0; color: #F4D58A; }
+.service-card .btn { align-self: flex-start; }
+.service-card .btn-ghost { color: #FFF; border-color: rgba(255,255,255,0.5); }
+.service-card .btn-ghost:hover { background: rgba(255,255,255,0.14); border-color: #FFF; color: #FFF; }
+
+/* ---------- ГАРАНТИИ ---------- */
+.guarantees { background: var(--sand); }
+.guarantees__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+@media (max-width: 1000px) { .guarantees__grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 600px)  { .guarantees__grid { grid-template-columns: repeat(2, 1fr); } }
+.guar-card {
+  text-align: center;
+  padding: 30px 18px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  transition: transform 0.3s, border-color 0.3s;
+}
+.guar-card:hover { transform: translateY(-3px); border-color: rgba(107,112,72,0.5); }
+.guar-card--hero { border-color: var(--sun); background: linear-gradient(180deg, rgba(235,165,28,0.10), var(--card)); }
+.guar-card__icon { font-size: 30px; margin-bottom: 14px; display: block; }
+.guar-card__title { font-size: 14px; font-weight: 600; margin-bottom: 8px; line-height: 1.4; }
+.guar-card--hero .guar-card__title { color: var(--sun-text); }
+.guar-card__desc { font-size: 12px; color: var(--stone); line-height: 1.5; }
+
+/* ---------- FAQ ---------- */
+.faq__list { max-width: 860px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid var(--line); }
+.faq-item__q {
+  width: 100%;
+  background: transparent;
+  border: none;
+  text-align: left;
+  padding: 26px 8px;
+  font-size: 17px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  color: var(--ink);
+  transition: color 0.2s;
+}
+.faq-item__q:hover { color: var(--khaki); }
+.faq-item__q .faq-x {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: grid; place-items: center;
+  font-size: 17px;
+  color: var(--khaki);
+  flex-shrink: 0;
+  transition: transform 0.35s, background 0.3s, color 0.3s;
+}
+.faq-item.open .faq-x { transform: rotate(45deg); background: var(--khaki); color: #FFF; border-color: var(--khaki); }
+.faq-item__a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+.faq-item__a-inner { padding: 0 8px 26px; color: var(--ink-soft); font-size: 15px; line-height: 1.7; max-width: 700px; }
+.faq-item.open .faq-item__a { max-height: 400px; }
+
+/* ---------- КОНТАКТ ---------- */
+.contact__inner {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+  background: var(--khaki-deep);
+  color: var(--cream);
+  border-radius: var(--r-lg);
+  padding: clamp(32px, 5vw, 64px);
+  overflow: hidden;
+  position: relative;
+}
+@media (max-width: 900px) { .contact__inner { grid-template-columns: 1fr; } }
+.contact__inner::before {
+  content: '';
+  position: absolute;
+  top: -60%; right: -20%;
+  width: 70%; height: 220%;
+  background: radial-gradient(ellipse at center, rgba(235,165,28,0.32), transparent 65%);
+  pointer-events: none;
+}
+.contact__title { font-family: 'Yeseva One', serif; font-size: clamp(30px, 3.6vw, 46px); line-height: 1.18; margin-bottom: 18px; }
+.contact__title em { font-style: normal; color: var(--sun); }
+.contact__desc { font-size: 15.5px; color: rgba(253,250,239,0.75); margin-bottom: 8px; }
+.contact__channels {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 30px;
+}
+.contact__channel {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 16px;
+  background: rgba(253,250,239,0.07);
+  border-radius: var(--r-sm);
+  border: 1px solid rgba(253,250,239,0.1);
+  transition: all 0.2s;
+  position: relative;
+  z-index: 2;
+}
+.contact__channel:hover { border-color: rgba(235,165,28,0.6); transform: translateX(4px); }
+.contact__channel__icon {
+  width: 40px; height: 40px;
+  background: rgba(253,250,239,0.1);
+  border-radius: 50%;
+  display: grid; place-items: center;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+.contact__channel__label {
+  font-size: 11px;
+  color: rgba(253,250,239,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.contact__channel__value { font-size: 14.5px; font-weight: 500; }
+
+.contact-form {
+  position: relative;
+  z-index: 2;
+  background: var(--cream);
+  color: var(--ink);
+  border-radius: var(--r);
+  padding: clamp(24px, 3vw, 36px);
+}
+.contact-form__title { font-family: 'Yeseva One', serif; font-size: 21px; margin-bottom: 20px; }
+.form__group { margin-bottom: 14px; }
+.form__label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--stone);
+  margin-bottom: 7px;
+  font-weight: 700;
+}
+.form__input, .form__select {
+  width: 100%;
+  background: #FFF;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 14px 16px;
+  font-size: 15px;
+  color: var(--ink);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form__input:focus-visible, .form__select:focus-visible {
+  outline: none;
+  border-color: var(--khaki);
+  box-shadow: 0 0 0 3px rgba(107,112,72,0.16);
+}
+.form__radio-group { display: flex; gap: 8px; flex-wrap: wrap; }
+.form__radio { flex: 1; min-width: 88px; }
+.form__radio input { position: absolute; opacity: 0; pointer-events: none; }
+.form__radio label {
+  display: block;
+  text-align: center;
+  padding: 11px;
+  background: #FFF;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--ink-soft);
+}
+.form__radio input:checked + label {
+  border-color: var(--khaki);
+  background: rgba(107,112,72,0.08);
+  color: var(--olive);
+  font-weight: 600;
+}
+.form__radio input:focus-visible + label { outline: 2px solid var(--khaki); outline-offset: 2px; }
+.form__submit {
+  width: 100%;
+  padding: 17px;
+  background: var(--sun-grad);
+  color: var(--ink);
+  border: none;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: all 0.25s;
+}
+.form__submit:hover { transform: translateY(-2px); box-shadow: var(--shadow-sun); }
+.form__consent { font-size: 11px; color: var(--stone); text-align: center; margin-top: 12px; }
+
+/* ---------- FOOTER ---------- */
+footer {
+  background: var(--cream);
+  padding: 64px 0 40px;
+  border-top: 1px solid var(--line);
+}
+.footer__top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+@media (max-width: 800px) { .footer__top { grid-template-columns: 1fr 1fr; } }
+footer .logo { color: var(--ink); text-shadow: none; }
+.footer__about { font-size: 14px; color: var(--stone); max-width: 320px; margin-top: 16px; line-height: 1.65; }
+.footer__title {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.footer__list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.footer__list a { font-size: 14px; color: var(--stone); transition: color 0.2s; }
+.footer__list a:hover { color: var(--khaki); }
+.footer__bottom {
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--stone);
+}
+
+/* ---------- REVEAL ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1);
+}
+.reveal.visible { opacity: 1; transform: none; }
+.reveal[data-delay="1"] { transition-delay: 0.08s; }
+.reveal[data-delay="2"] { transition-delay: 0.16s; }
+.reveal[data-delay="3"] { transition-delay: 0.24s; }
+
+/* ---------- MODAL · заявка ---------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(30,34,20,0.62);
+  backdrop-filter: blur(8px);
+  z-index: 1200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.modal.open { display: flex; }
+.modal__body {
+  background: var(--cream);
+  border-radius: var(--r-lg);
+  padding: 40px;
+  max-width: 480px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 40px 100px -20px rgba(0,0,0,0.4);
+}
+.modal__close {
+  position: absolute;
+  top: 16px; right: 16px;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--sand);
+  border: none;
+  cursor: pointer;
+  font-size: 17px;
+}
+.modal__title { font-family: 'Yeseva One', serif; font-size: 23px; margin-bottom: 8px; }
+.modal__sub {
+  font-size: 14px;
+  color: var(--stone);
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 2px dashed var(--line);
+}
+
+/* ---------- СТРАНИЦА ТУРА · посадочный талон ---------- */
+.tsheet {
+  position: fixed;
+  inset: 0;
+  background: rgba(30,34,20,0.66);
+  backdrop-filter: blur(8px);
+  z-index: 1100;
+  display: none;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 24px;
+  overflow-y: auto;
+}
+.tsheet.open { display: flex; }
+.tsheet__panel {
+  background: var(--cream);
+  border-radius: var(--r-lg);
+  max-width: 760px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 50px 120px -24px rgba(0,0,0,0.5);
+  overflow: hidden;
+  animation: sheetUp 0.5s cubic-bezier(0.22,1,0.36,1);
+}
+@keyframes sheetUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
+.tsheet__close {
+  position: absolute;
+  top: 18px; right: 18px;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: rgba(253,250,239,0.9);
+  border: none;
+  cursor: pointer;
+  font-size: 19px;
+  color: var(--ink);
+  z-index: 5;
+  backdrop-filter: blur(6px);
+  transition: transform 0.25s;
+}
+.tsheet__close:hover { transform: rotate(90deg); }
+.ts-hero {
+  position: relative;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 32px;
+  color: #FFF;
+}
+.ts-hero img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.ts-hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(190deg, rgba(20,24,12,0.15) 20%, rgba(20,24,12,0.85) 92%);
+}
+.ts-hero > * { position: relative; z-index: 2; }
+.ts-hero__eyebrow {
+  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  font-weight: 700; color: var(--sun); margin-bottom: 12px;
+}
+.ts-hero__title { font-family: 'Yeseva One', serif; font-size: clamp(26px, 4vw, 40px); line-height: 1.12; }
+.ts-hero__route { font-size: 14px; color: rgba(255,255,255,0.82); margin-top: 10px; }
+.ts-facts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border-bottom: 1px solid var(--line);
+}
+@media (max-width: 560px) { .ts-facts { grid-template-columns: repeat(2, 1fr); } }
+.ts-fact { background: var(--cream); padding: 20px 18px; text-align: center; }
+.ts-fact__num { font-family: 'Yeseva One', serif; font-size: 24px; color: var(--sun-text); line-height: 1; }
+.ts-fact__label { font-size: 11px; color: var(--stone); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 6px; }
+.ts-body { padding: clamp(24px, 4vw, 40px); }
+.ts-block { margin-bottom: 38px; }
+.ts-block:last-child { margin-bottom: 0; }
+.ts-block__h {
+  font-family: 'Yeseva One', serif;
+  font-size: 21px;
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.ts-block__h::before {
+  content: ''; width: 22px; height: 3px; border-radius: 3px; background: var(--sun);
+}
+/* программа по дням — таймлайн */
+.ts-day {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 18px;
+  padding-bottom: 22px;
+  position: relative;
+}
+.ts-day:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 18px; top: 40px; bottom: 0;
+  width: 2px; background: var(--line);
+}
+.ts-day__num {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--sun-soft);
+  color: var(--sun-text);
+  font-family: 'Yeseva One', serif;
+  font-size: 15px;
+  display: grid; place-items: center;
+  flex-shrink: 0;
+  position: relative; z-index: 2;
+}
+.ts-day__title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.ts-day__text { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+/* что входит / не входит */
+.ts-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+@media (max-width: 560px) { .ts-cols { grid-template-columns: 1fr; } }
+.ts-list { list-style: none; }
+.ts-list li {
+  font-size: 14px;
+  padding: 8px 0 8px 28px;
+  position: relative;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.ts-list--in li::before {
+  content: '✓';
+  position: absolute; left: 0; top: 7px;
+  color: var(--khaki); font-weight: 700;
+}
+.ts-list--out li::before {
+  content: '–';
+  position: absolute; left: 2px; top: 6px;
+  color: var(--stone); font-weight: 700;
+}
+.ts-note {
+  margin-top: 14px;
+  font-size: 12.5px;
+  color: var(--stone);
+  line-height: 1.55;
+  padding: 12px 14px;
+  background: var(--sand);
+  border-radius: var(--r-sm);
+}
+.ts-cta {
+  background: var(--sand);
+  border-radius: var(--r);
+  padding: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.ts-cta__price-old { font-size: 13px; color: var(--stone); text-decoration: line-through; }
+.ts-cta__price { font-family: 'Yeseva One', serif; font-size: 30px; }
+.ts-cta__price small { font-size: 13px; color: var(--stone); font-family: 'Golos Text'; }
+/* галерея «как прошёл прошлый заезд» */
+.ts-gallery__note { font-size: 13.5px; color: var(--ink-soft); margin-bottom: 18px; max-width: 62ch; }
+.ts-gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.ts-gallery__item { position: relative; overflow: hidden; border-radius: 12px; aspect-ratio: 1; margin: 0; }
+.ts-gallery__item:first-child { grid-column: span 2; grid-row: span 2; }
+.ts-gallery__item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.22,1,0.36,1); }
+.ts-gallery__item:hover img { transform: scale(1.06); }
+.ts-gallery__item figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 26px 14px 10px;
+  font-family: 'Caveat', cursive; font-size: 19px; color: #FFF;
+  background: linear-gradient(180deg, transparent, rgba(20,24,12,0.72));
+}
+@media (max-width: 560px) {
+  .ts-gallery { grid-template-columns: repeat(2, 1fr); }
+  .ts-gallery__item:first-child { grid-column: span 2; grid-row: span 1; aspect-ratio: 16/10; }
+}
+
+/* ---------- ТОСТ ---------- */
+.toast {
+  position: fixed;
+  bottom: 28px; left: 50%;
+  transform: translate(-50%, calc(100% + 48px));
+  background: var(--khaki-deep);
+  color: var(--cream);
+  padding: 16px 26px;
+  border-radius: 999px;
+  font-size: 14.5px;
+  z-index: 1300;
+  transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  white-space: nowrap;
+}
+.toast.show { transform: translate(-50%, 0); }
+
+/* ---------- ACCESSIBILITY ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; }
+  .hero__pill, .hero h1, .hero__sub, .hero__cta, .hero__stats { opacity: 1; transform: none; }
+  .u-stroke path { stroke-dashoffset: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav">
+  <div class="container nav__inner">
+    <a href="#" class="logo">
+      <span class="logo__mark"><img src="./arisha.jpg" alt="Ариша" onerror="this.style.display='none'; this.parentNode.textContent='А';"></span>
+      <span>Ари&nbsp;тур</span>
+    </a>
+    <div class="nav__links" id="navLinks">
+      <a href="#directions">Направления</a>
+      <a href="#about-ari">Об Арише</a>
+      <a href="#tours">Туры 2026</a>
+      <a href="#services">Услуги</a>
+      <a href="#faq">Вопросы</a>
+    </div>
+    <div class="nav__cta">
+      <button class="btn btn-primary" onclick="openModal()">Забронировать</button>
+    </div>
+    <button class="nav__burger" id="navBurger" aria-label="Открыть меню" aria-expanded="false" onclick="toggleMenu()"><span></span></button>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="hero__bg"></div>
+  <div class="hero__glow"></div>
+  <div class="container hero__inner">
+    <span class="hero__pill">
+      <span class="hero__pill__dot"></span>
+      Идёт набор в группы на 2026 год
+    </span>
+    <h1>Хватит откладывать <span class="u-stroke">жизнь<svg viewBox="0 0 220 24" preserveAspectRatio="none" aria-hidden="true"><path d="M6 18 C70 8 160 4 214 12"/></svg></span> на потом.</h1>
+    <p class="hero__sub">
+      Авторские туры с Аришей по Кавказу и не только —<br>
+      маленькая группа, «всё включено» без сюрпризов<br>
+      и места, в которые хочется возвращаться.
+    </p>
+    <div class="hero__cta">
+      <button class="btn btn-primary btn-arrow" onclick="scrollToId('tours')">Выбрать тур</button>
+      <a href="#about-ari" class="btn btn-ghost">Кто такая Ариша</a>
+    </div>
+    <div class="hero__stats">
+      <div class="hero__stat">
+        <div class="hero__stat__num">700<span>+</span></div>
+        <div class="hero__stat__label">туристов за 3 года</div>
+      </div>
+      <div class="hero__stat">
+        <div class="hero__stat__num">8</div>
+        <div class="hero__stat__label">направлений</div>
+      </div>
+      <div class="hero__stat">
+        <div class="hero__stat__num">15K<span>+</span></div>
+        <div class="hero__stat__label">в Instagram</div>
+      </div>
+      <div class="hero__stat">
+        <div class="hero__stat__num">4.9</div>
+        <div class="hero__stat__label">средняя оценка</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ НАПРАВЛЕНИЯ ============ -->
+<section id="directions">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-head__text">
+        <span class="eyebrow">Направления</span>
+        <h2 class="h-section">Восемь мест,<br>которые я <em>люблю</em>.</h2>
+        <p class="section-head__desc">
+          От Сулака до Самарканда, от Тбилиси до Териберки.<br>
+          Каждое выбрано не по рейтингам, а по тому,<br>
+          куда хочется возвращаться самой.
+        </p>
+      </div>
+    </div>
+
+    <div class="directions__grid">
+      <div class="dir-card reveal" role="button" tabindex="0" onclick="openTour('Дагестан')">
+        <img src="https://picsum.photos/id/1015/720/900" alt="Сулакский каньон, Дагестан" loading="lazy">
+        <div class="dir-card__content">
+          <div class="dir-card__name">Дагестан</div>
+          <div class="dir-card__route">Сулак · Гамсутль · Дербент</div>
+          <div class="dir-card__meta">
+            <div class="dir-card__price">от 35 000 ₽<small>3–7 дней</small></div>
+            <span class="dir-card__more">Подробнее</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dir-card reveal" role="button" tabindex="0" data-delay="1" onclick="openTour('Грузия')">
+        <img src="https://picsum.photos/id/29/720/900" alt="Казбеги, Грузия" loading="lazy">
+        <div class="dir-card__content">
+          <div class="dir-card__name">Грузия</div>
+          <div class="dir-card__route">Тбилиси · Казбеги · Батуми</div>
+          <div class="dir-card__meta">
+            <div class="dir-card__price">от 42 000 ₽<small>7 дней</small></div>
+            <span class="dir-card__more">Подробнее</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dir-card reveal" role="button" tabindex="0" data-delay="2" onclick="openTour('Армения')">
+        <img src="https://picsum.photos/id/1043/720/900" alt="Гарни, Армения" loading="lazy">
+        <div class="dir-card__content">
+          <div class="dir-card__name">Армения</div>
+          <div class="dir-card__route">Ереван · Севан · Дилижан</div>
+          <div class="dir-card__meta">
+            <div class="dir-card__price">от 38 000 ₽<small>5 дней</small></div>
+            <span class="dir-card__more">Подробнее</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dir-card reveal" role="button" tabindex="0" data-delay="3" onclick="openTour('Грузия + Армения')">
+        <img src="https://picsum.photos/id/1018/720/900" alt="Дорога в горах — Грузия и Армения" loading="lazy">
+        <div class="dir-card__content">
+          <div class="dir-card__name">Грузия + Армения</div>
+          <div class="dir-card__route">2 страны за 5 дней</div>
+          <div class="dir-card__meta">
+            <div class="dir-card__price">от 45 000 ₽<small>5 дней</small></div>
+            <span class="dir-card__more">Подробнее</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dir-card reveal" role="button" tabindex="0" onclick="openTour('Осетия')">
+        <img src="https://picsum.photos/id/1039/720/900" alt="Водопады Дигории, Осетия" loading="lazy">
+        <div class="dir-card__content">
+          <div class="dir-card__name">Осетия</div>
+          <div class="dir-card__route">Цей · Дигория · Даргавс</div>
+          <div class="dir-card__meta">
+            <div class="dir-card__price">от 28 000 ₽<small>4 дня</small></div>
+            <span class="dir-card__more">Подробнее</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dir-card reveal" role="button" tabindex="0" data-delay="1" onclick="openTour('Чечня')">
+        <img src="https://picsum.photos/id/1044/720/900" alt="Озеро Кезеной-Ам, Чечня" loading="lazy">
+        <div class="dir-card__content">
+          <div class="dir-card__name">Чечня</div>
+          <div class="dir-card__route">Грозный · Аргун · Кезеной-Ам</div>
+          <div class="dir-card__meta">
+            <div class="dir-card__price">от 32 000 ₽<small>4 дня</small></div>
+            <span class="dir-card__more">Подробнее</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dir-card reveal" role="button" tabindex="0" data-delay="2" onclick="openTour('Узбекистан')">
+        <img src="https://picsum.photos/id/1016/720/900" alt="Восточные пейзажи, Узбекистан" loading="lazy">
+        <div class="dir-card__content">
+          <div class="dir-card__name">Узбекистан</div>
+          <div class="dir-card__route">Самарканд · Бухара · Хива</div>
+          <div class="dir-card__meta">
+            <div class="dir-card__price">от 65 000 ₽<small>7 дней</small></div>
+            <span class="dir-card__more">Подробнее</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dir-card reveal" role="button" tabindex="0" data-delay="3" onclick="openTour('Териберка')">
+        <img src="https://picsum.photos/id/1041/720/900" alt="Северный Ледовитый океан, Териберка" loading="lazy">
+        <div class="dir-card__content">
+          <div class="dir-card__name">Териберка</div>
+          <div class="dir-card__route">Северное сияние · океан · киты</div>
+          <div class="dir-card__meta">
+            <div class="dir-card__price">от 48 000 ₽<small>4 дня</small></div>
+            <span class="dir-card__more">Подробнее</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ПОЛАРОИДНАЯ ЛЕНТА ============ -->
+<div class="polaroids">
+  <div class="polaroids__head reveal">
+    <div class="hand">это не стоковые обещания — <em>это мои туры</em></div>
+  </div>
+  <div class="polaroids__track reveal">
+    <figure class="polaroid" style="--tilt:-4deg;">
+      <img src="https://picsum.photos/id/1018/460/460" alt="Фото из тура" loading="lazy">
+      <figcaption>перевал, утро</figcaption>
+    </figure>
+    <figure class="polaroid" style="--tilt:2.5deg;">
+      <img src="https://picsum.photos/id/1015/460/460" alt="Фото из тура" loading="lazy">
+      <figcaption>Сулак 🩵</figcaption>
+    </figure>
+    <figure class="polaroid" style="--tilt:-2deg;">
+      <img src="./arisha.jpg" alt="Ариша в туре" loading="lazy">
+      <figcaption>ваш гид :)</figcaption>
+    </figure>
+    <figure class="polaroid" style="--tilt:3.5deg;">
+      <img src="https://picsum.photos/id/1039/460/460" alt="Фото из тура" loading="lazy">
+      <figcaption>к водопаду</figcaption>
+    </figure>
+    <figure class="polaroid" style="--tilt:-3deg;">
+      <img src="https://picsum.photos/id/1053/460/460" alt="Фото из тура" loading="lazy">
+      <figcaption>море зовёт</figcaption>
+    </figure>
+  </div>
+</div>
+
+<!-- ============ ОБ АРИНЕ ============ -->
+<section id="about-ari">
+  <div class="container">
+    <div class="about__inner">
+      <div class="about__photo-wrap reveal">
+        <div class="about__photo">
+          <img src="./arisha.jpg" alt="Ариша — автор туров">
+        </div>
+        <div class="about__badge">
+          <div class="about__badge__num">3</div>
+          <div class="about__badge__text">года<br>авторских туров</div>
+        </div>
+      </div>
+      <div class="reveal" data-delay="1">
+        <span class="eyebrow">Привет, я Ариша</span>
+        <h2 class="h-section" style="margin-top:16px;">Открой мир<br>вместе со мной.</h2>
+        <p class="about__quote">
+          «Мир огромен — <em>бери билет</em><br>и забирай свои эмоции сейчас.»
+        </p>
+        <p class="about__text">
+          За 3 года через мои авторские туры прошло <strong>700+ туристов</strong>.<br>
+          В моих маршрутах нет автобусов на 50 человек и «галочной» программы —<br>
+          есть маленькая группа, личное внимание и места, которые я выбирала сама.
+        </p>
+        <div class="about__signature">
+          <div class="hand">Ариша</div>
+          <div class="about__signature__role">автор маршрутов · @arii_tour</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <div class="marquee__item">Дагестан<span></span>Грузия<span></span>Армения<span></span>Осетия<span></span>Чечня<span></span>Узбекистан<span></span>Териберка<span></span>Приэльбрусье<span></span></div>
+    <div class="marquee__item">Дагестан<span></span>Грузия<span></span>Армения<span></span>Осетия<span></span>Чечня<span></span>Узбекистан<span></span>Териберка<span></span>Приэльбрусье<span></span></div>
+  </div>
+</div>
+
+<!-- ============ ДЛЯ КОГО ============ -->
+<section id="for-whom">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-head__text">
+        <span class="eyebrow">Для кого</span>
+        <h2 class="h-section">Эти туры — точно для вас,<br>если…</h2>
+      </div>
+    </div>
+    <div class="audience__grid">
+      <div class="aud-card reveal">
+        <div class="aud-card__num">раз</div>
+        <div class="aud-card__title">Вы устали от шумных туров</div>
+        <p class="aud-card__desc">Не хочется ехать в автобусе на 50 человек и слушать гида по громкой связи. Хочется лично.</p>
+      </div>
+      <div class="aud-card reveal" data-delay="1">
+        <div class="aud-card__num">два</div>
+        <div class="aud-card__title">Едете с подругами или одна</div>
+        <p class="aud-card__desc">70% моих туристов — женщины. Здесь безопасно, тепло и быстро находятся свои.</p>
+      </div>
+      <div class="aud-card reveal" data-delay="2">
+        <div class="aud-card__num">три</div>
+        <div class="aud-card__title">Любите красивые кадры</div>
+        <p class="aud-card__desc">Мы знаем, где встретить рассвет, чтобы потом долго пересматривать фото. Фотограф — в подарок.</p>
+      </div>
+      <div class="aud-card reveal" data-delay="3">
+        <div class="aud-card__num">четыре</div>
+        <div class="aud-card__title">Ищете не «галочку», а опыт</div>
+        <p class="aud-card__desc">Мастер-классы по хинкали, дегустации у виноделов, лезгинка с местными — то, чего нет в путеводителях.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ВСЁ ВКЛЮЧЕНО ============ -->
+<section id="included" class="included">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-head__text">
+        <span class="eyebrow">Что входит в каждый тур</span>
+        <h2 class="h-section">«Всё включено» —<br>значит <em>правда всё</em>.</h2>
+      </div>
+    </div>
+    <div class="included__grid">
+      <div class="inc-item reveal"><span class="inc-item__icon">✈️</span><div class="inc-item__title">Трансферы</div><div class="inc-item__desc">аэропорт ⇄ отель и между локациями</div></div>
+      <div class="inc-item reveal"><span class="inc-item__icon">🏡</span><div class="inc-item__title">Проживание</div><div class="inc-item__desc">авторские гестхаусы и бутик-отели</div></div>
+      <div class="inc-item reveal"><span class="inc-item__icon">🍷</span><div class="inc-item__title">Завтраки + гала-ужин</div><div class="inc-item__desc">с лезгинкой, вином, мастер-классом</div></div>
+      <div class="inc-item reveal"><span class="inc-item__icon">🚐</span><div class="inc-item__title">Транспорт</div><div class="inc-item__desc">комфортный микроавтобус для группы</div></div>
+      <div class="inc-item reveal"><span class="inc-item__icon">🧭</span><div class="inc-item__title">Гид-автор</div><div class="inc-item__desc">я с вами все дни тура</div></div>
+      <div class="inc-item reveal"><span class="inc-item__icon">🎫</span><div class="inc-item__title">Все билеты</div><div class="inc-item__desc">входные, экскурсионные, дегустации</div></div>
+      <div class="inc-item reveal"><span class="inc-item__icon">📸</span><div class="inc-item__title">Фотограф</div><div class="inc-item__desc">часть тура — кадры в подарок</div></div>
+      <div class="inc-item reveal"><span class="inc-item__icon">🥟</span><div class="inc-item__title">Мастер-классы</div><div class="inc-item__desc">хинкали, хачапури, чурчхела</div></div>
+      <div class="inc-item reveal"><span class="inc-item__icon">🍇</span><div class="inc-item__title">Дегустации</div><div class="inc-item__desc">вино, сыры, местные специалитеты</div></div>
+      <div class="inc-item reveal"><span class="inc-item__icon">💬</span><div class="inc-item__title">Чат 24/7</div><div class="inc-item__desc">с момента бронирования</div></div>
+    </div>
+    <div class="included__note reveal">
+      <strong>Что оплачивается отдельно:</strong> авиабилеты до старта тура и страховка (помогу оформить со скидкой).<br>
+      Точный состав по каждому направлению чуть отличается — пришлю полный список при бронировании. Цена в каталоге — финальная, без «доплатите на месте».
+    </div>
+  </div>
+</section>
+
+<!-- ============ КАТАЛОГ ТУРОВ ============ -->
+<section id="tours">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-head__text">
+        <span class="eyebrow">Каталог туров</span>
+        <h2 class="h-section">Туры 2026 года.<br>Бронь — <em>в два клика</em>.</h2>
+        <p class="section-head__desc">
+          Никаких «напишите в директ за программой».<br>
+          Все даты, цены и места — здесь. Нажмите «Подробнее» — откроется программа по дням.
+        </p>
+      </div>
+    </div>
+
+    <div class="tours__filter reveal" id="toursFilter">
+      <button class="tours__chip active" data-dest="all">Все направления</button>
+      <button class="tours__chip" data-dest="Дагестан">Дагестан</button>
+      <button class="tours__chip" data-dest="Грузия">Грузия</button>
+      <button class="tours__chip" data-dest="Армения">Армения</button>
+      <button class="tours__chip" data-dest="Грузия + Армения">Грузия + Армения</button>
+      <button class="tours__chip" data-dest="Осетия">Осетия</button>
+      <button class="tours__chip" data-dest="Чечня">Чечня</button>
+      <button class="tours__chip" data-dest="Узбекистан">Узбекистан</button>
+      <button class="tours__chip" data-dest="Териберка">Териберка</button>
+    </div>
+
+    <div class="tours__layout">
+      <div class="tours__grid" id="toursGrid">
+
+        <div class="tour-card reveal" data-dest="Дагестан">
+          <div class="tour-card__img">
+            <img src="https://picsum.photos/id/1015/720/450" alt="Сулакский каньон" loading="lazy">
+            <span class="tour-card__badge tour-card__badge--hot">Хит сезона</span>
+          </div>
+          <div class="tour-card__body">
+            <div class="tour-card__title">Сердце Дагестана</div>
+            <div class="tour-card__route">Махачкала → Сулак → Гамсутль → Дербент · 6 дней</div>
+            <div class="tour-card__dates">
+              <span class="tour-card__dot"></span>
+              <span>Ближайший: <strong>5 июля</strong> · осталось 3 места из 10</span>
+            </div>
+          </div>
+          <div class="ticket__stub">
+            <div>
+              <div class="tour-card__price-old">42 000 ₽</div>
+              <div class="tour-card__price">35 000 ₽</div>
+            </div>
+            <div class="ticket__actions">
+              <button class="tour-card__more" onclick="openTour('Дагестан')">Подробнее</button>
+              <button class="tour-card__btn" onclick="openModal('Сердце Дагестана')">Забронировать</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tour-card reveal" data-dest="Грузия">
+          <div class="tour-card__img">
+            <img src="https://picsum.photos/id/29/720/450" alt="Казбеги" loading="lazy">
+            <span class="tour-card__badge">Новый маршрут</span>
+          </div>
+          <div class="tour-card__body">
+            <div class="tour-card__title">Грузия по любви</div>
+            <div class="tour-card__route">Тбилиси → Казбеги → Сигнахи → Батуми · 7 дней</div>
+            <div class="tour-card__dates">
+              <span class="tour-card__dot"></span>
+              <span>Ближайший: <strong>12 июля</strong> · осталось 5 мест из 12</span>
+            </div>
+          </div>
+          <div class="ticket__stub">
+            <div>
+              <div class="tour-card__price-old">48 000 ₽</div>
+              <div class="tour-card__price">42 000 ₽</div>
+            </div>
+            <div class="ticket__actions">
+              <button class="tour-card__more" onclick="openTour('Грузия')">Подробнее</button>
+              <button class="tour-card__btn" onclick="openModal('Грузия по любви')">Забронировать</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tour-card reveal" data-dest="Армения">
+          <div class="tour-card__img">
+            <img src="https://picsum.photos/id/1043/720/450" alt="Татев, Армения" loading="lazy">
+            <span class="tour-card__badge">Топ выбор</span>
+          </div>
+          <div class="tour-card__body">
+            <div class="tour-card__title">Армения вдохновляет</div>
+            <div class="tour-card__route">Ереван → Гарни → Севан → Дилижан → Татев · 5 дней</div>
+            <div class="tour-card__dates">
+              <span class="tour-card__dot"></span>
+              <span>Ближайший: <strong>19 июля</strong> · осталось 6 мест из 10</span>
+            </div>
+          </div>
+          <div class="ticket__stub">
+            <div>
+              <div class="tour-card__price-old">44 000 ₽</div>
+              <div class="tour-card__price">38 000 ₽</div>
+            </div>
+            <div class="ticket__actions">
+              <button class="tour-card__more" onclick="openTour('Армения')">Подробнее</button>
+              <button class="tour-card__btn" onclick="openModal('Армения вдохновляет')">Забронировать</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tour-card reveal" data-dest="Грузия + Армения">
+          <div class="tour-card__img">
+            <img src="https://picsum.photos/id/1018/720/450" alt="Дорога через горы" loading="lazy">
+          </div>
+          <div class="tour-card__body">
+            <div class="tour-card__title">Грузия + Армения</div>
+            <div class="tour-card__route">2 страны за 5 дней · Тбилиси → Севан → Ереван</div>
+            <div class="tour-card__dates">
+              <span class="tour-card__dot"></span>
+              <span>Ближайший: <strong>19 июля</strong> · осталось 7 мест из 12</span>
+            </div>
+          </div>
+          <div class="ticket__stub">
+            <div>
+              <div class="tour-card__price-old">52 000 ₽</div>
+              <div class="tour-card__price">45 000 ₽</div>
+            </div>
+            <div class="ticket__actions">
+              <button class="tour-card__more" onclick="openTour('Грузия + Армения')">Подробнее</button>
+              <button class="tour-card__btn" onclick="openModal('Грузия + Армения')">Забронировать</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tour-card reveal" data-dest="Осетия">
+          <div class="tour-card__img">
+            <img src="https://picsum.photos/id/1039/720/450" alt="Водопад в Дигории" loading="lazy">
+          </div>
+          <div class="tour-card__body">
+            <div class="tour-card__title">Осетия для души</div>
+            <div class="tour-card__route">Цей → Дигория → Даргавс · 4 дня</div>
+            <div class="tour-card__dates">
+              <span class="tour-card__dot"></span>
+              <span>Ближайший: <strong>14 июля</strong> · осталось 6 мест из 10</span>
+            </div>
+          </div>
+          <div class="ticket__stub">
+            <div>
+              <div class="tour-card__price-old">34 000 ₽</div>
+              <div class="tour-card__price">28 000 ₽</div>
+            </div>
+            <div class="ticket__actions">
+              <button class="tour-card__more" onclick="openTour('Осетия')">Подробнее</button>
+              <button class="tour-card__btn" onclick="openModal('Осетия для души')">Забронировать</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tour-card reveal" data-dest="Чечня">
+          <div class="tour-card__img">
+            <img src="https://picsum.photos/id/1044/720/450" alt="Кезеной-Ам" loading="lazy">
+            <span class="tour-card__badge">Новинка</span>
+          </div>
+          <div class="tour-card__body">
+            <div class="tour-card__title">Чечня — другой Кавказ</div>
+            <div class="tour-card__route">Грозный → Аргун → Кезеной-Ам · 4 дня</div>
+            <div class="tour-card__dates">
+              <span class="tour-card__dot"></span>
+              <span>Ближайший: <strong>22 августа</strong> · осталось 5 мест из 10</span>
+            </div>
+          </div>
+          <div class="ticket__stub">
+            <div>
+              <div class="tour-card__price-old">38 000 ₽</div>
+              <div class="tour-card__price">32 000 ₽</div>
+            </div>
+            <div class="ticket__actions">
+              <button class="tour-card__more" onclick="openTour('Чечня')">Подробнее</button>
+              <button class="tour-card__btn" onclick="openModal('Чечня — другой Кавказ')">Забронировать</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tour-card reveal" data-dest="Узбекистан">
+          <div class="tour-card__img">
+            <img src="https://picsum.photos/id/1016/720/450" alt="Восточные пейзажи" loading="lazy">
+            <span class="tour-card__badge tour-card__badge--hot">Премьера 2026</span>
+          </div>
+          <div class="tour-card__body">
+            <div class="tour-card__title">Сказки Узбекистана</div>
+            <div class="tour-card__route">Самарканд → Бухара → Хива · 7 дней</div>
+            <div class="tour-card__dates">
+              <span class="tour-card__dot"></span>
+              <span>Ближайший: <strong>4 октября</strong> · осталось 9 мест из 12</span>
+            </div>
+          </div>
+          <div class="ticket__stub">
+            <div>
+              <div class="tour-card__price-old">72 000 ₽</div>
+              <div class="tour-card__price">65 000 ₽</div>
+            </div>
+            <div class="ticket__actions">
+              <button class="tour-card__more" onclick="openTour('Узбекистан')">Подробнее</button>
+              <button class="tour-card__btn" onclick="openModal('Сказки Узбекистана')">Забронировать</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tour-card reveal" data-dest="Териберка">
+          <div class="tour-card__img">
+            <img src="https://picsum.photos/id/1041/720/450" alt="Северный океан" loading="lazy">
+          </div>
+          <div class="tour-card__body">
+            <div class="tour-card__title">Териберка под сиянием</div>
+            <div class="tour-card__route">Мурманск → Териберка → океан · 4 дня</div>
+            <div class="tour-card__dates">
+              <span class="tour-card__dot"></span>
+              <span>Ближайший: <strong>3 ноября</strong> · осталось 4 места из 10</span>
+            </div>
+          </div>
+          <div class="ticket__stub">
+            <div>
+              <div class="tour-card__price-old">54 000 ₽</div>
+              <div class="tour-card__price">48 000 ₽</div>
+            </div>
+            <div class="ticket__actions">
+              <button class="tour-card__more" onclick="openTour('Териберка')">Подробнее</button>
+              <button class="tour-card__btn" onclick="openModal('Териберка под сиянием')">Забронировать</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="upcoming reveal">
+        <div class="upcoming__title">
+          <span class="upcoming__live"></span>
+          Ближайшие заезды
+        </div>
+        <div class="upcoming__sub">лето 2026</div>
+
+        <div class="upcoming__item">
+          <div class="upcoming__date">05 июля</div>
+          <div class="upcoming__where">Дагестан · 6 дней</div>
+          <div class="upcoming__progress"><div class="upcoming__progress__fill" style="width:70%"></div></div>
+          <div class="upcoming__seats">осталось <strong>3 места из 10</strong></div>
+        </div>
+
+        <div class="upcoming__item">
+          <div class="upcoming__date">12 июля</div>
+          <div class="upcoming__where">Грузия · 7 дней</div>
+          <div class="upcoming__progress"><div class="upcoming__progress__fill" style="width:58%"></div></div>
+          <div class="upcoming__seats">осталось <strong>5 мест из 12</strong></div>
+        </div>
+
+        <div class="upcoming__item">
+          <div class="upcoming__date">19 июля</div>
+          <div class="upcoming__where">Грузия + Армения · 5 дней</div>
+          <div class="upcoming__progress"><div class="upcoming__progress__fill" style="width:42%"></div></div>
+          <div class="upcoming__seats">осталось <strong>7 мест из 12</strong></div>
+        </div>
+
+        <div class="upcoming__note">
+          <strong>Бронь без предоплаты:</strong> место держится 3 дня, пока вы решаете. Аванс — только после согласования программы.
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ОТЗЫВЫ ============ -->
+<section id="reviews">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-head__text">
+        <span class="eyebrow">Отзывы</span>
+        <h2 class="h-section">700+ туристов.<br>И у каждого — <em>своя история</em>.</h2>
+      </div>
+      <div style="text-align:right;">
+        <div class="display" style="font-size:38px;color:var(--sun-text);">4.9 ★</div>
+        <div style="font-size:13px;color:var(--stone);">по 247 отзывам</div>
+      </div>
+    </div>
+
+    <div class="reviews__grid">
+      <div class="review-card review-card--video reveal">
+        <img class="review-bg" src="https://picsum.photos/id/1018/600/560" alt="" loading="lazy">
+        <div class="review-card__play">▶</div>
+        <div class="review-card__vlabel">Видео-отзыв · 1:42</div>
+        <div class="review-card__vquote">«Думали — будет красиво. Не думали, что захотим вернуться через месяц.»</div>
+        <div class="review-card__vwho">Анна и Сергей · Грузия, май 2026</div>
+      </div>
+
+      <div class="review-card reveal" data-delay="1">
+        <div class="review-card__stars">★★★★★</div>
+        <p class="review-card__text">«Поехала "посмотреть Сулак", вернулась — переписала bio в Telegram. Ариша — это отдельное приключение. Всё включено реально значило всё.»</p>
+        <div class="review-card__author">
+          <div class="review-card__avatar">М</div>
+          <div>
+            <div class="review-card__name">Марина Б.</div>
+            <div class="review-card__meta">Дагестан · апрель 2026</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal" data-delay="2">
+        <div class="review-card__stars">★★★★★</div>
+        <p class="review-card__text">«Я ехала одна и боялась. Через 2 дня казалось, что эти девочки — мои подруги с детства. И гала-ужин с лезгинкой я буду помнить всегда.»</p>
+        <div class="review-card__author">
+          <div class="review-card__avatar">К</div>
+          <div>
+            <div class="review-card__name">Ксения Р.</div>
+            <div class="review-card__meta">Грузия · март 2026</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal">
+        <div class="review-card__stars">★★★★★</div>
+        <p class="review-card__text">«Маленькая группа — это магия. Никто никого не ждёт по часу у автобуса, все на одной волне. И виды — ну вы видели мою сторис, я не могу.»</p>
+        <div class="review-card__author">
+          <div class="review-card__avatar">О</div>
+          <div>
+            <div class="review-card__name">Ольга Т.</div>
+            <div class="review-card__meta">Армения · февраль 2026</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal" data-delay="1">
+        <div class="review-card__stars">★★★★★</div>
+        <p class="review-card__text">«У Ариши есть талант собирать людей. Из 10 человек тура у меня осталось 3 близких подруги — мы продолжаем встречаться в Москве каждый месяц.»</p>
+        <div class="review-card__author">
+          <div class="review-card__avatar">Д</div>
+          <div>
+            <div class="review-card__name">Дина Л.</div>
+            <div class="review-card__meta">Чечня · октябрь 2025</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card review-card--video reveal" data-delay="2">
+        <img class="review-bg" src="https://picsum.photos/id/1044/600/560" alt="" loading="lazy">
+        <div class="review-card__play">▶</div>
+        <div class="review-card__vlabel">Видео-отзыв · 0:58</div>
+        <div class="review-card__vquote">«Кавказ открылся с такой стороны, какую я не видела даже у местных.»</div>
+        <div class="review-card__vwho">Юлия · Дагестан, июль 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ УСЛУГИ ============ -->
+<section id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-head__text">
+        <span class="eyebrow">Дополнительно</span>
+        <h2 class="h-section">Не только<br>групповые туры.</h2>
+        <p class="section-head__desc">
+          Хочется поехать в свои даты или подарить путешествие?<br>
+          Есть два формата кроме каталога.
+        </p>
+      </div>
+    </div>
+
+    <div class="services__grid">
+      <div class="service-card reveal">
+        <img class="service-bg" src="https://picsum.photos/id/1015/900/700" alt="" loading="lazy">
+        <div class="service-card__tag">Подарочный сертификат</div>
+        <h3 class="service-card__title">Подари путешествие<br>с душой.</h3>
+        <p class="service-card__desc">
+          Сертификат на любую сумму от 10 000 ₽ — на любой тур из каталога<br>или индивидуальный маршрут. Действует 1 год.
+        </p>
+        <ul class="service-card__features">
+          <li>Электронный или печатный — на выбор</li>
+          <li>Можно использовать частями</li>
+          <li>Идеален на день рождения и годовщину</li>
+        </ul>
+        <button class="btn btn-primary btn-arrow" onclick="openModal('Подарочный сертификат')">Оформить сертификат</button>
+      </div>
+
+      <div class="service-card reveal" data-delay="1">
+        <img class="service-bg" src="https://picsum.photos/id/1044/900/700" alt="" loading="lazy">
+        <div class="service-card__tag">Индивидуальный тур</div>
+        <h3 class="service-card__title">Тур под вас.<br>Даты, маршрут, бюджет.</h3>
+        <p class="service-card__desc">
+          Соберу авторский маршрут под вашу компанию: подруг, семью<br>или корпоратив. Любое направление из каталога или комбо стран.
+        </p>
+        <ul class="service-card__features">
+          <li>Только ваша группа — без подселений</li>
+          <li>Гибкие даты, темп и уровень комфорта</li>
+          <li>Маршрут согласуем перед бронью</li>
+        </ul>
+        <button class="btn btn-ghost btn-arrow" onclick="openModal('Индивидуальный тур')">Обсудить со мной</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ГАРАНТИИ ============ -->
+<section class="guarantees">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-head__text">
+        <span class="eyebrow">Гарантии</span>
+        <h2 class="h-section">Снимаю риски <em>за вас</em>.</h2>
+      </div>
+    </div>
+    <div class="guarantees__grid">
+      <div class="guar-card reveal">
+        <span class="guar-card__icon">🛡</span>
+        <div class="guar-card__title">Возврат аванса</div>
+        <p class="guar-card__desc">100% при отмене за 21 день до тура</p>
+      </div>
+      <div class="guar-card reveal" data-delay="1">
+        <span class="guar-card__icon">📄</span>
+        <div class="guar-card__title">Официальный договор</div>
+        <p class="guar-card__desc">ИП, реестр туроператоров РФ</p>
+      </div>
+      <div class="guar-card reveal" data-delay="2">
+        <span class="guar-card__icon">💳</span>
+        <div class="guar-card__title">Безопасная оплата</div>
+        <p class="guar-card__desc">Карта, СБП, рассрочка без процентов</p>
+      </div>
+      <div class="guar-card reveal" data-delay="3">
+        <span class="guar-card__icon">📞</span>
+        <div class="guar-card__title">Поддержка 24/7</div>
+        <p class="guar-card__desc">Чат с Аришей с момента брони</p>
+      </div>
+      <div class="guar-card guar-card--hero reveal" data-delay="3">
+        <span class="guar-card__icon">🤍</span>
+        <div class="guar-card__title">Не понравится первый день — верну 100%</div>
+        <p class="guar-card__desc">Так не делает никто, кроме нас</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-head reveal" style="justify-content:center;text-align:center;">
+      <div class="section-head__text" style="margin:0 auto;">
+        <span class="eyebrow" style="justify-content:center;">Вопросы</span>
+        <h2 class="h-section">Часто спрашивают.</h2>
+      </div>
+    </div>
+
+    <div class="faq__list">
+      <div class="faq-item reveal">
+        <button class="faq-item__q"><span>С детьми берёте? С какого возраста?</span><span class="faq-x">+</span></button>
+        <div class="faq-item__a"><div class="faq-item__a-inner">Берём с 7 лет. Для семей с детьми у меня отдельная линейка туров с щадящим темпом — без долгих перегонов и сложных треков.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-item__q"><span>Можно ехать одной? Будет ли неловко?</span><span class="faq-x">+</span></button>
+        <div class="faq-item__a"><div class="faq-item__a-inner">70% моих туристов едут одни. К концу первого дня вы уже не одна — группа маленькая, все на одной волне. В размещении подселяем к гостье того же пола, одноместное — по запросу.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-item__q"><span>Нужен ли загранпаспорт?</span><span class="faq-x">+</span></button>
+        <div class="faq-item__a"><div class="faq-item__a-inner">Для Грузии, Армении, Узбекистана — да (срок действия от 6 месяцев). Для Дагестана, Осетии, Чечни, Териберки — только российский паспорт. Виз нет ни в одну страну.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-item__q"><span>Что если погода испортится?</span><span class="faq-x">+</span></button>
+        <div class="faq-item__a"><div class="faq-item__a-inner">У каждого маршрута есть «план Б»: винодельни, мастерские, термальные источники, музеи. Дождь не отменяет день — он его пересобирает.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-item__q"><span>Можно ли в рассрочку?</span><span class="faq-x">+</span></button>
+        <div class="faq-item__a"><div class="faq-item__a-inner">Да. 30% аванс + 2 платежа без процентов через сервис «Долями» или прямой договор.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-item__q"><span>Как добираться до старта тура?</span><span class="faq-x">+</span></button>
+        <div class="faq-item__a"><div class="faq-item__a-inner">Каждое направление — свой аэропорт. Авиабилеты не входят в стоимость, но после бронирования я лично помогу с поиском оптимальных рейсов и согласую время трансфера.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-item__q"><span>Что брать с собой? Дресс-код?</span><span class="faq-x">+</span></button>
+        <div class="faq-item__a"><div class="faq-item__a-inner">За 7 дней до тура присылаю подробный гайд: одежда по дням, аптечка, обувь, какой кадр снять и где. Дресс-код нужен только для пары локаций — все вещи помещаются в ручную кладь.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ КОНТАКТ ============ -->
+<section id="contact">
+  <div class="container">
+    <div class="contact__inner reveal">
+      <div>
+        <h2 class="contact__title">Кавказ ждёт.<br>Осталось сказать <em>«да»</em>.</h2>
+        <p class="contact__desc">Оставьте заявку — пришлю программу выбранного тура и помогу определиться с датами. Без спама и «горящих предложений».</p>
+
+        <div class="contact__channels">
+          <a href="https://t.me/arii_tour" class="contact__channel" target="_blank" rel="noopener">
+            <div class="contact__channel__icon">✈️</div>
+            <div>
+              <div class="contact__channel__label">Telegram — пишите в личку</div>
+              <div class="contact__channel__value">@arii_tour</div>
+            </div>
+          </a>
+          <a href="https://wa.me/79991234567" class="contact__channel" target="_blank" rel="noopener">
+            <div class="contact__channel__icon">💬</div>
+            <div>
+              <div class="contact__channel__label">WhatsApp</div>
+              <div class="contact__channel__value">+7 (999) 123-45-67</div>
+            </div>
+          </a>
+          <a href="https://instagram.com/arii_tour" class="contact__channel" target="_blank" rel="noopener">
+            <div class="contact__channel__icon">📷</div>
+            <div>
+              <div class="contact__channel__label">Instagram</div>
+              <div class="contact__channel__value">@arii_tour · 15K подписчиков</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="contact-form__title">Получить подборку туров</div>
+        <div class="form__group">
+          <label class="form__label" for="lead-name">Как вас зовут</label>
+          <input type="text" id="lead-name" name="name" autocomplete="name" class="form__input" placeholder="Ваше имя" required>
+        </div>
+        <div class="form__group">
+          <label class="form__label" for="lead-contact">Телефон или ник в Telegram</label>
+          <input type="text" id="lead-contact" name="contact" autocomplete="tel" class="form__input" placeholder="+7 999 123-45-67 или @username" required>
+        </div>
+        <div class="form__group">
+          <span class="form__label">Куда удобнее писать</span>
+          <div class="form__radio-group">
+            <div class="form__radio">
+              <input type="radio" name="ch" id="ch-tg" checked>
+              <label for="ch-tg">Telegram</label>
+            </div>
+            <div class="form__radio">
+              <input type="radio" name="ch" id="ch-wa">
+              <label for="ch-wa">WhatsApp</label>
+            </div>
+            <div class="form__radio">
+              <input type="radio" name="ch" id="ch-call">
+              <label for="ch-call">Звонок</label>
+            </div>
+          </div>
+        </div>
+        <div class="form__group">
+          <label class="form__label" for="lead-dest">Какое направление интересно</label>
+          <select id="lead-dest" name="destination" class="form__select">
+            <option>Ещё выбираю</option>
+            <option>Дагестан</option>
+            <option>Грузия</option>
+            <option>Армения</option>
+            <option>Грузия + Армения</option>
+            <option>Осетия</option>
+            <option>Чечня</option>
+            <option>Узбекистан</option>
+            <option>Териберка</option>
+            <option>Подарочный сертификат</option>
+            <option>Индивидуальный тур</option>
+          </select>
+        </div>
+        <button type="submit" class="form__submit">Жду подборку →</button>
+        <div class="form__consent">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer__top">
+      <div>
+        <a href="#" class="logo">
+          <span class="logo__mark"><img src="./arisha.jpg" alt="Ариша" onerror="this.style.display='none'; this.parentNode.textContent='А';"></span>
+          <span>Ари&nbsp;тур</span>
+        </a>
+        <p class="footer__about">
+          Авторские туры по 8 направлениям — Кавказ, Закавказье, Узбекистан, Север. С душой, маленькой группой и человеком, который правда любит эти места.
+        </p>
+      </div>
+      <div>
+        <div class="footer__title">Направления</div>
+        <ul class="footer__list">
+          <li><a href="#tours">Дагестан</a></li>
+          <li><a href="#tours">Грузия</a></li>
+          <li><a href="#tours">Армения</a></li>
+          <li><a href="#tours">Осетия</a></li>
+          <li><a href="#tours">Чечня</a></li>
+          <li><a href="#tours">Узбекистан</a></li>
+          <li><a href="#tours">Териберка</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__title">Компания</div>
+        <ul class="footer__list">
+          <li><a href="#about-ari">Об Арише</a></li>
+          <li><a href="#reviews">Отзывы</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__title">Связь</div>
+        <ul class="footer__list">
+          <li><a href="https://t.me/arii_tour" target="_blank" rel="noopener">Telegram</a></li>
+          <li><a href="https://wa.me/79991234567" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="https://instagram.com/arii_tour" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="mailto:hello@arii-tour.ru">hello@arii-tour.ru</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div>© 2026 Ари тур. Все права защищены.</div>
+      <div>ИП Иванова А. А. · ОГРНИП 000000000000</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ СТРАНИЦА ТУРА (посадочный талон) ============ -->
+<div class="tsheet" id="tourSheet" role="dialog" aria-modal="true" aria-labelledby="tsTitle">
+  <div class="tsheet__panel">
+    <button class="tsheet__close" onclick="closeTour()" aria-label="Закрыть">×</button>
+    <div id="tsContent"></div>
+  </div>
+</div>
+
+<!-- ============ MODAL ЗАЯВКИ ============ -->
+<div class="modal" id="modal">
+  <div class="modal__body">
+    <button class="modal__close" onclick="closeModal()" aria-label="Закрыть">×</button>
+    <div class="modal__title" id="modalTitle">Забронировать тур</div>
+    <div class="modal__sub">Заполните 3 поля — я свяжусь с вами в течение 30 минут в Telegram или WhatsApp и пришлю программу.</div>
+    <form onsubmit="handleSubmit(event)">
+      <div class="form__group">
+        <label class="form__label" for="modal-name">Имя</label>
+        <input type="text" id="modal-name" name="name" autocomplete="name" class="form__input" placeholder="Как к вам обращаться" required>
+      </div>
+      <div class="form__group">
+        <label class="form__label" for="modal-contact">Telegram или телефон</label>
+        <input type="text" id="modal-contact" name="contact" autocomplete="tel" class="form__input" placeholder="@username или +7..." required>
+      </div>
+      <div class="form__group">
+        <label class="form__label" for="modal-people">Сколько человек</label>
+        <select id="modal-people" name="people" class="form__select">
+          <option>1 человек</option>
+          <option>2 человека</option>
+          <option>3 человека</option>
+          <option>4+ человек</option>
+        </select>
+      </div>
+      <button type="submit" class="form__submit">Забронировать место →</button>
+      <div class="form__consent">Бронирование без предоплаты. Аванс — после подтверждения программы.</div>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast">Спасибо! Ариша свяжется с вами в течение 30 минут 🤍</div>
+
+<script>
+/* ===== Данные туров для страницы «Подробнее» ===== */
+const TOURS = {
+  "Дагестан": {
+    name: "Сердце Дагестана", region: "Дагестан · Кавказ",
+    route: "Махачкала → Сулак → Гамсутль → Дербент",
+    img: "https://picsum.photos/id/1015/900/500",
+    days: 6, group: "8–10", spots: "3 места", next: "5 июля",
+    priceOld: "42 000", price: "35 000",
+    program: [
+      ["Махачкала, знакомство", "Встреча в аэропорту, заселение, прогулка по набережной Каспия и ужин-знакомство с группой."],
+      ["Сулакский каньон", "Катер по бирюзовой воде глубочайшего каньона Европы, бархан Сарыкум, форелевое хозяйство."],
+      ["Гамсутль", "Подъём в аул-призрак на вершине горы, чай у местных, заброшенные сакли и виды на облака."],
+      ["Дербент", "Древнейший город России: крепость Нарын-Кала, старый город, дегустация коньяка."],
+      ["Салта и Гоор", "Подземный водопад в пещере, «язык тролля» над обрывом, старинные сторожевые башни."],
+      ["Гала-ужин и вылет", "Мастер-класс по хинкали, прощальный гала-ужин с лезгинкой, трансфер в аэропорт."]
+    ]
+  },
+  "Грузия": {
+    name: "Грузия по любви", region: "Грузия · Закавказье",
+    route: "Тбилиси → Казбеги → Сигнахи → Батуми",
+    img: "https://picsum.photos/id/29/900/500",
+    days: 7, group: "10–12", spots: "5 мест", next: "12 июля",
+    priceOld: "48 000", price: "42 000",
+    program: [
+      ["Тбилиси", "Серные бани, старый город, канатка к крепости Нарикала, ужин с грузинскими песнями."],
+      ["Мцхета и Джвари", "Древняя столица, храм Светицховели, монастырь Джвари над слиянием двух рек."],
+      ["Казбеги", "Военно-Грузинская дорога, храм Гергети на фоне пятитысячника Казбек."],
+      ["Гудаури", "Горные панорамы, арка Дружбы, по желанию — параглайдинг над ущельем."],
+      ["Кахетия, Сигнахи", "Город любви на холме, винодельня, дегустация вин по методу квеври."],
+      ["Батуми", "Переезд к Чёрному морю, вечерняя набережная, огни приморского города."],
+      ["Прощание", "Свободное утро у моря, прощальный обед, трансфер в аэропорт."]
+    ]
+  },
+  "Армения": {
+    name: "Армения вдохновляет", region: "Армения · Закавказье",
+    route: "Ереван → Гарни → Севан → Дилижан → Татев",
+    img: "https://picsum.photos/id/1043/900/500",
+    days: 5, group: "8–10", spots: "6 мест", next: "19 июля",
+    priceOld: "44 000", price: "38 000",
+    program: [
+      ["Ереван", "Каскад, площадь Республики, коньячный завод, вечерний город и поющие фонтаны."],
+      ["Гарни и Гегард", "Языческий храм Солнца, пещерный монастырь, мастер-класс по лавашу в тонире."],
+      ["Озеро Севан", "Полуостров с монастырём, обед из свежей севанской форели, горный воздух."],
+      ["Дилижан", "«Армянская Швейцария»: лес, монастырь Агарцин, уютные горные тропы."],
+      ["Хор Вирап и Татев", "Вид на Арарат, самая длинная канатка «Крылья Татева», вылет вечером."]
+    ]
+  },
+  "Грузия + Армения": {
+    name: "Грузия + Армения", region: "2 страны · Закавказье",
+    route: "Тбилиси → граница → Севан → Ереван",
+    img: "https://picsum.photos/id/1018/900/500",
+    days: 5, group: "10–12", spots: "7 мест", next: "19 июля",
+    priceOld: "52 000", price: "45 000",
+    program: [
+      ["Тбилиси", "Старый город, серные бани, канатка, знакомство с группой за ужином."],
+      ["Мцхета → Ереван", "Древняя столица Грузии, переезд через границу, вечерний Ереван и Каскад."],
+      ["Севан и Дилижан", "Монастырь на озере, форель, лесной Дилижан и монастырь Агарцин."],
+      ["Гарни и Гегард", "Храм Солнца, пещерный монастырь, лаваш в тонире, дегустация армянских вин."],
+      ["Ереван, вылет", "Рынок Вернисаж, сувениры, прощальный обед и трансфер в аэропорт."]
+    ]
+  },
+  "Осетия": {
+    name: "Осетия для души", region: "Северная Осетия · Кавказ",
+    route: "Владикавказ → Цей → Дигория → Даргавс",
+    img: "https://picsum.photos/id/1039/900/500",
+    days: 4, group: "8–10", spots: "6 мест", next: "14 июля",
+    priceOld: "34 000", price: "28 000",
+    program: [
+      ["Владикавказ", "Проспект Мира, суннитская мечеть, дегустация осетинских пирогов и знакомство."],
+      ["Цейское ущелье", "Сказский ледник, канатка, сосновый воздух, святилище Реком."],
+      ["Дигория", "Водопады, «Чёртов мост», альпийские луга и башни горной Осетии."],
+      ["Даргавс, вылет", "«Город мёртвых» — древний некрополь, панорамы гор, трансфер в аэропорт."]
+    ]
+  },
+  "Чечня": {
+    name: "Чечня — другой Кавказ", region: "Чечня · Кавказ",
+    route: "Грозный → Аргун → Кезеной-Ам",
+    img: "https://picsum.photos/id/1044/900/500",
+    days: 4, group: "8–10", spots: "5 мест", next: "22 августа",
+    priceOld: "38 000", price: "32 000",
+    program: [
+      ["Грозный", "Мечеть «Сердце Чечни», небоскрёбы Грозный-Сити, цветочный парк, смотровая."],
+      ["Аргунское ущелье", "Средневековые боевые башни, крепость Ушкалой, горные серпантины."],
+      ["Кезеной-Ам", "Высокогорное бирюзовое озеро, обед на базе, прогулки и фотосессия."],
+      ["Ночной Грозный, вылет", "Вечерняя подсветка города, сувениры, трансфер в аэропорт."]
+    ]
+  },
+  "Узбекистан": {
+    name: "Сказки Узбекистана", region: "Узбекистан · Средняя Азия",
+    route: "Самарканд → Бухара → Хива",
+    img: "https://picsum.photos/id/1016/900/500",
+    days: 7, group: "10–12", spots: "9 мест", next: "4 октября",
+    priceOld: "72 000", price: "65 000",
+    program: [
+      ["Самарканд", "Площадь Регистан, знакомство с группой, вечерняя подсветка медресе."],
+      ["Самарканд", "Некрополь Шахи-Зинда, мавзолей Гур-Эмир, базар Сиаб, дегустация плова."],
+      ["Дорога в Бухару", "Переезд через пустыню, остановка в Нурате, караван-сарайный колорит."],
+      ["Бухара", "Ляби-Хауз, минарет Калян, торговые купола, ремесленные лавки."],
+      ["Бухара", "Мастер-классы: ковры, чеканка, миниатюра. Ужин с восточными танцами."],
+      ["Хива", "Ичан-Кала — город-музей за глиняными стенами, закат с высоты минарета."],
+      ["Ташкент, вылет", "Переезд, метро-музей, сувениры, трансфер в аэропорт."]
+    ]
+  },
+  "Териберка": {
+    name: "Териберка под сиянием", region: "Мурманская область · Север",
+    route: "Мурманск → Териберка → Баренцево море",
+    img: "https://picsum.photos/id/1041/900/500",
+    days: 4, group: "8–10", spots: "4 места", next: "3 ноября",
+    priceOld: "54 000", price: "48 000",
+    program: [
+      ["Мурманск", "Памятник «Алёша», знакомство, ужин из северной кухни, теория северного сияния."],
+      ["Териберка", "Баренцево море, кладбище кораблей, батарея, пляж «Яйца драконов»."],
+      ["Охота за сиянием", "Снегоходы или хаски днём, вечером — выезд за авророй подальше от огней."],
+      ["Киты и вылет", "Морская прогулка (сезон), поиск китов, трансфер в Мурманск и вылет."]
+    ]
+  }
+};
+const INCLUDED = [
+  "Трансфер аэропорт ⇄ отель и по маршруту",
+  "Проживание в авторских гестхаусах и отелях",
+  "Завтраки + гала-ужин с лезгинкой и вином",
+  "Гид-автор (я) все дни тура",
+  "Все входные билеты и экскурсии",
+  "Мастер-классы и дегустации",
+  "Фотограф на часть тура — кадры в подарок",
+  "Чат-поддержка 24/7 с момента брони"
+];
+const NOT_INCLUDED = [
+  "Авиабилеты до старта тура и обратно",
+  "Страховка (помогу оформить со скидкой)",
+  "Обеды и ужины вне программы",
+  "Личные расходы и сувениры"
+];
+/* Живые фото прошлых заездов (заглушки — заменить на реальные снимки Ариши) */
+const GALLERY_CAPS = ["группа на маршруте", "за общим столом", "та самая смотровая", "вечер у своих", "на память 🤍"];
+function pics(ids) { return ids.map(id => `https://picsum.photos/id/${id}/600/600`); }
+const GALLERIES = {
+  "Дагестан": pics([1015, 1016, 1018, 1024, 1036]),
+  "Грузия": pics([29, 28, 164, 177, 225]),
+  "Армения": pics([1043, 1044, 1045, 1047, 1049]),
+  "Грузия + Армения": pics([1018, 1019, 1039, 1043, 1050]),
+  "Осетия": pics([1039, 1036, 1033, 1024, 1015]),
+  "Чечня": pics([1044, 1043, 1041, 1039, 1035]),
+  "Узбекистан": pics([1016, 1020, 1024, 1033, 1050]),
+  "Териберка": pics([1041, 1043, 1044, 1051, 1053])
+};
+
+/* ===== Рендер страницы тура ===== */
+function openTour(dest) {
+  const t = TOURS[dest];
+  if (!t) return;
+  const days = t.program.map((d, i) => `
+    <div class="ts-day">
+      <div class="ts-day__num">${i + 1}</div>
+      <div>
+        <div class="ts-day__title">${d[0]}</div>
+        <div class="ts-day__text">${d[1]}</div>
+      </div>
+    </div>`).join('');
+  const inc = INCLUDED.map(x => `<li>${x}</li>`).join('');
+  const out = NOT_INCLUDED.map(x => `<li>${x}</li>`).join('');
+  const gal = (GALLERIES[dest] || []).map((src, i) => `
+    <figure class="ts-gallery__item">
+      <img src="${src}" alt="Фото из тура «${t.name}»" loading="lazy">
+      ${GALLERY_CAPS[i] ? `<figcaption>${GALLERY_CAPS[i]}</figcaption>` : ''}
+    </figure>`).join('');
+
+  document.getElementById('tsContent').innerHTML = `
+    <div class="ts-hero">
+      <img src="${t.img}" alt="${t.name}">
+      <div class="ts-hero__eyebrow">${t.region}</div>
+      <h2 class="ts-hero__title" id="tsTitle">${t.name}</h2>
+      <div class="ts-hero__route">${t.route}</div>
+    </div>
+    <div class="ts-facts">
+      <div class="ts-fact"><div class="ts-fact__num">${t.days}</div><div class="ts-fact__label">дней</div></div>
+      <div class="ts-fact"><div class="ts-fact__num">${t.group}</div><div class="ts-fact__label">человек в группе</div></div>
+      <div class="ts-fact"><div class="ts-fact__num">${t.next}</div><div class="ts-fact__label">ближайший заезд</div></div>
+      <div class="ts-fact"><div class="ts-fact__num">${t.spots}</div><div class="ts-fact__label">осталось</div></div>
+    </div>
+    <div class="ts-body">
+      <div class="ts-block">
+        <div class="ts-block__h">Программа по дням</div>
+        ${days}
+      </div>
+      <div class="ts-block">
+        <div class="ts-block__h">Как прошёл прошлый заезд</div>
+        <p class="ts-gallery__note">Живые кадры именно с этого маршрута — не сток. Так и проходит: маленькой компанией, без спешки, с общими ужинами и той самой смотровой.</p>
+        <div class="ts-gallery">${gal}</div>
+      </div>
+      <div class="ts-block">
+        <div class="ts-block__h">Что входит и что нет</div>
+        <div class="ts-cols">
+          <div>
+            <ul class="ts-list ts-list--in">${inc}</ul>
+          </div>
+          <div>
+            <ul class="ts-list ts-list--out">${out}</ul>
+          </div>
+        </div>
+        <div class="ts-note">Состав по каждому направлению немного отличается — точный список пришлю при бронировании. Цена финальная, без доплат на месте.</div>
+      </div>
+      <div class="ts-block">
+        <div class="ts-cta">
+          <div>
+            <div class="ts-cta__price-old">${t.priceOld} ₽</div>
+            <div class="ts-cta__price">${t.price} ₽ <small>/ с человека</small></div>
+          </div>
+          <button class="btn btn-primary btn-arrow" onclick="bookFrom('${t.name.replace(/'/g, "\\'")}')">Забронировать место</button>
+        </div>
+      </div>
+    </div>`;
+  document.getElementById('tourSheet').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeTour() {
+  document.getElementById('tourSheet').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function bookFrom(name) {
+  closeTour();
+  openModal(name);
+}
+document.getElementById('tourSheet').addEventListener('click', (e) => {
+  if (e.target.id === 'tourSheet') closeTour();
+});
+
+/* ===== Hero стартовая хореография ===== */
+window.addEventListener('load', () => document.getElementById('hero').classList.add('loaded'));
+setTimeout(() => document.getElementById('hero').classList.add('loaded'), 1200);
+
+/* ===== Плавный скролл ===== */
+function scrollToId(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const top = el.getBoundingClientRect().top + window.scrollY - 72;
+  window.scrollTo({ top, behavior: 'smooth' });
+}
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    const href = a.getAttribute('href');
+    if (href && href.length > 1) {
+      e.preventDefault();
+      closeMenu();
+      scrollToId(href.slice(1));
+    }
+  });
+});
+
+/* ===== Мобильное меню ===== */
+const navEl = document.getElementById('nav');
+const burger = document.getElementById('navBurger');
+function toggleMenu() {
+  const open = navEl.classList.toggle('menu-open');
+  burger.setAttribute('aria-expanded', open);
+  burger.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+}
+function closeMenu() {
+  navEl.classList.remove('menu-open');
+  burger.setAttribute('aria-expanded', 'false');
+}
+
+/* ===== Nav при скролле ===== */
+function onScrollNav() {
+  if (window.scrollY > 60) navEl.classList.add('scrolled');
+  else navEl.classList.remove('scrolled');
+}
+window.addEventListener('scroll', onScrollNav, { passive: true });
+onScrollNav();
+
+/* ===== Reveal при скролле ===== */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* ===== Счётчики в hero ===== */
+function animateCounter(el) {
+  const raw = el.textContent;
+  const num = parseFloat(raw.replace(/[^\d.]/g, ''));
+  if (isNaN(num) || num === 0) return;
+  const suffix = el.querySelector('span') ? el.querySelector('span').textContent : '';
+  const isK = raw.includes('K');
+  const isFloat = raw.includes('.');
+  const duration = 1500;
+  const start = performance.now();
+  function tick(now) {
+    const t = Math.min(1, (now - start) / duration);
+    const eased = 1 - Math.pow(1 - t, 3);
+    const cur = num * eased;
+    const text = isFloat ? cur.toFixed(1) : Math.round(cur);
+    el.innerHTML = text + (isK ? 'K' : '') + (suffix ? '<span>' + suffix + '</span>' : '');
+    if (t < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+const statObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounter(entry.target);
+      statObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.hero__stat__num').forEach(el => statObserver.observe(el));
+
+/* ===== Клавиатура для карточек направлений ===== */
+document.addEventListener('keydown', e => {
+  if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('dir-card')) {
+    e.preventDefault();
+    e.target.click();
+  }
+});
+
+/* ===== Рабочие фильтры каталога ===== */
+function applyFilter(dest) {
+  document.querySelectorAll('#toursFilter .tours__chip').forEach(c => {
+    c.classList.toggle('active', c.dataset.dest === dest);
+  });
+  document.querySelectorAll('#toursGrid .tour-card').forEach(card => {
+    const show = dest === 'all' || card.dataset.dest === dest;
+    card.classList.toggle('hidden', !show);
+  });
+}
+document.querySelectorAll('#toursFilter .tours__chip').forEach(chip => {
+  chip.addEventListener('click', () => applyFilter(chip.dataset.dest));
+});
+
+/* ===== FAQ аккордеон ===== */
+document.querySelectorAll('.faq-item__q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    document.querySelectorAll('.faq-item').forEach(other => {
+      if (other !== item) other.classList.remove('open');
+    });
+    item.classList.toggle('open');
+  });
+});
+
+/* ===== Модалка заявки ===== */
+function openModal(tourName) {
+  const title = document.getElementById('modalTitle');
+  title.textContent = tourName ? 'Забронировать: ' + tourName : 'Забронировать тур';
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  if (!document.getElementById('tourSheet').classList.contains('open')) {
+    document.body.style.overflow = '';
+  }
+}
+document.getElementById('modal').addEventListener('click', (e) => {
+  if (e.target.id === 'modal') closeModal();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeModal(); closeTour(); }
+});
+
+/* ===== Отправка формы + тост ===== */
+function handleSubmit(e) {
+  e.preventDefault();
+  closeModal();
+  e.target.reset();
+  const toast = document.getElementById('toast');
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 4200);
+}
+</script>
+
+</body>
+</html>
