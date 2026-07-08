@@ -1382,15 +1382,15 @@ footer .logo { color: var(--ink); text-shadow: none; }
 .ts-hero__route { font-size: 14px; color: rgba(255,255,255,0.82); margin-top: 10px; }
 .ts-facts {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1px;
   background: var(--line);
   border-bottom: 1px solid var(--line);
 }
-@media (max-width: 560px) { .ts-facts { grid-template-columns: repeat(2, 1fr); } }
-.ts-fact { background: var(--cream); padding: 20px 18px; text-align: center; }
-.ts-fact__num { font-family: 'Yeseva One', serif; font-size: 24px; color: var(--sun-text); line-height: 1; }
-.ts-fact__label { font-size: 11px; color: var(--stone); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 6px; }
+.ts-fact { background: var(--cream); padding: 22px 16px; text-align: center; }
+.ts-fact__num { font-family: 'Yeseva One', serif; font-size: clamp(19px, 5vw, 24px); color: var(--sun-text); line-height: 1.05; }
+.ts-fact__label { font-size: 10.5px; color: var(--stone); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 7px; }
+@media (max-width: 420px) { .ts-fact { padding: 18px 8px; } }
 .ts-body { padding: clamp(24px, 4vw, 40px); }
 .ts-block { margin-bottom: 38px; }
 .ts-block:last-child { margin-bottom: 0; }
@@ -1408,28 +1408,30 @@ footer .logo { color: var(--ink); text-shadow: none; }
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 18px;
-  padding-bottom: 22px;
+  padding-bottom: 26px;
   position: relative;
 }
+.ts-day > div { min-width: 0; }
 .ts-day:not(:last-child)::before {
   content: '';
   position: absolute;
-  left: 18px; top: 40px; bottom: 0;
-  width: 2px; background: var(--line);
+  left: 19px; top: 44px; bottom: 0;
+  width: 2px; background: linear-gradient(var(--sun-soft), var(--line));
 }
 .ts-day__num {
-  width: 38px; height: 38px;
+  width: 40px; height: 40px;
   border-radius: 50%;
   background: var(--sun-soft);
   color: var(--sun-text);
   font-family: 'Yeseva One', serif;
-  font-size: 15px;
+  font-size: 16px;
   display: grid; place-items: center;
   flex-shrink: 0;
   position: relative; z-index: 2;
+  box-shadow: 0 0 0 5px var(--cream);
 }
-.ts-day__title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
-.ts-day__text { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+.ts-day__title { font-size: 16px; font-weight: 700; margin-bottom: 5px; letter-spacing: -.01em; }
+.ts-day__text { font-size: 14px; color: var(--ink-soft); line-height: 1.62; }
 
 /* ---- фото дня: плёночная лента ---- */
 .ts-rail { margin-top: 15px; }
@@ -1479,50 +1481,68 @@ footer .logo { color: var(--ink); text-shadow: none; }
 }
 .lightbox__close:hover { background: rgba(255,255,255,.28); transform: rotate(90deg); }
 
-/* что входит / не входит */
-.ts-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-@media (max-width: 560px) { .ts-cols { grid-template-columns: 1fr; } }
+/* что входит / не входит — карточки */
+.ts-inout { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 560px) { .ts-inout { grid-template-columns: 1fr; } }
+.ts-inout__card {
+  border-radius: var(--r-sm);
+  padding: 20px 20px 8px;
+  border: 1px solid var(--line);
+}
+.ts-inout__card--in { background: linear-gradient(180deg, var(--sun-soft) 0%, rgba(251,234,194,.28) 60%, transparent 100%); border-color: rgba(235,165,28,.28); }
+.ts-inout__card--out { background: var(--sand); }
+.ts-inout__cap { margin-bottom: 8px; }
+.ts-inout__badge {
+  display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .05em;
+  text-transform: uppercase; padding: 5px 12px; border-radius: 999px;
+}
+.ts-inout__badge--in { color: #fff; background: var(--khaki); }
+.ts-inout__badge--out { color: var(--stone); background: rgba(51,52,28,.07); }
 .ts-list { list-style: none; }
 .ts-list li {
   font-size: 14px;
-  padding: 8px 0 8px 28px;
+  padding: 9px 0 9px 27px;
   position: relative;
-  color: var(--ink-soft);
+  color: var(--ink);
   line-height: 1.5;
 }
+.ts-list li:not(:last-child) { border-bottom: 1px dashed rgba(51,52,28,.1); }
 .ts-list--in li::before {
   content: '✓';
-  position: absolute; left: 0; top: 7px;
-  color: var(--khaki); font-weight: 700;
+  position: absolute; left: 0; top: 8px;
+  color: var(--khaki); font-weight: 800;
 }
+.ts-list--out li { color: var(--ink-soft); }
 .ts-list--out li::before {
-  content: '–';
-  position: absolute; left: 2px; top: 6px;
+  content: '×';
+  position: absolute; left: 2px; top: 7px;
   color: var(--stone); font-weight: 700;
 }
-.ts-note {
-  margin-top: 14px;
-  font-size: 12.5px;
-  color: var(--stone);
-  line-height: 1.55;
-  padding: 12px 14px;
-  background: var(--sand);
-  border-radius: var(--r-sm);
-}
 .ts-cta {
-  background: var(--sand);
+  background: linear-gradient(135deg, var(--khaki-deep, #3f4426) 0%, var(--khaki) 100%);
   border-radius: var(--r);
-  padding: 26px;
+  padding: 28px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
+  gap: 22px;
   flex-wrap: wrap;
+  color: #fff;
 }
-.ts-cta__price-old { font-size: 13px; color: var(--stone); text-decoration: line-through; }
-.ts-cta__price { font-family: 'Yeseva One', serif; font-size: 30px; }
-.ts-cta__price small { font-size: 13px; color: var(--stone); font-family: 'Golos Text'; }
-.ts-cta__prepay { margin-top: 6px; font-size: 13px; font-weight: 600; color: var(--sun-text); }
+.ts-cta__info { min-width: 0; }
+.ts-cta__label { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.62); margin-bottom: 8px; }
+.ts-cta__row { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.ts-cta__price-old { font-size: 15px; color: rgba(255,255,255,.55); text-decoration: line-through; }
+.ts-cta__price { font-family: 'Yeseva One', serif; font-size: 34px; line-height: 1; color: #fff; }
+.ts-cta__per { font-size: 13px; color: rgba(255,255,255,.7); }
+.ts-cta__prepay {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 12px;
+  font-size: 13px; font-weight: 600; color: var(--sun-soft);
+  background: rgba(255,255,255,.09); padding: 7px 14px; border-radius: 999px;
+}
+.ts-cta__prepay-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--sun); box-shadow: 0 0 0 4px rgba(235,165,28,.25); flex-shrink: 0; }
+.ts-cta__btn { flex-shrink: 0; }
+@media (max-width: 560px) { .ts-cta { padding: 24px 22px; } .ts-cta__btn { width: 100%; justify-content: center; } }
 /* галерея «как прошёл прошлый заезд» */
 .ts-gallery__note { font-size: 13.5px; color: var(--ink-soft); margin-bottom: 18px; max-width: 62ch; }
 .ts-gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
@@ -1878,8 +1898,7 @@ footer .logo { color: var(--ink); text-shadow: none; }
       <div class="inc-item reveal"><span class="inc-item__icon">💬</span><div class="inc-item__title">Чат 24/7</div><div class="inc-item__desc">с момента бронирования</div></div>
     </div>
     <div class="included__note reveal">
-      <strong>Что оплачивается отдельно:</strong> авиабилеты до старта тура и страховка (помогу оформить со скидкой).<br>
-      Точный состав по каждому направлению чуть отличается — пришлю полный список при бронировании. Цена в каталоге — финальная, без «доплатите на месте».
+      <strong>Что оплачивается отдельно:</strong> авиабилеты до старта тура и страховка (помогу оформить со скидкой).
     </div>
   </div>
 </section>
@@ -1923,7 +1942,7 @@ footer .logo { color: var(--ink); text-shadow: none; }
             <div class="tour-card__route">Махачкала → Сулак → Гамсутль → Дербент · 6 дней</div>
             <div class="tour-card__dates">
               <span class="tour-card__dot"></span>
-              <span>Ближайший: <strong>5 июля</strong> · осталось 3 места из 10</span>
+              <span>Ближайший: <strong>5 июля</strong></span>
             </div>
           </div>
           <div class="ticket__stub">
@@ -1948,7 +1967,7 @@ footer .logo { color: var(--ink); text-shadow: none; }
             <div class="tour-card__route">Владикавказ → Казбеги → Тбилиси → Кахетия → Батуми · 7 дней</div>
             <div class="tour-card__dates">
               <span class="tour-card__dot"></span>
-              <span>Ближайший: <strong>12 июля</strong> · осталось 5 мест из 12</span>
+              <span>Ближайший: <strong>12 июля</strong></span>
             </div>
           </div>
           <div class="ticket__stub">
@@ -1972,7 +1991,7 @@ footer .logo { color: var(--ink); text-shadow: none; }
             <div class="tour-card__route">Ереван → Гарни → Севан → Дилижан → Татев · 5 дней</div>
             <div class="tour-card__dates">
               <span class="tour-card__dot"></span>
-              <span>Ближайший: <strong>19 июля</strong> · осталось 6 мест из 10</span>
+              <span>Ближайший: <strong>19 июля</strong></span>
             </div>
           </div>
           <div class="ticket__stub">
@@ -1996,7 +2015,7 @@ footer .logo { color: var(--ink); text-shadow: none; }
             <div class="tour-card__route">2 страны за 5 дней · Тбилиси → Севан → Ереван</div>
             <div class="tour-card__dates">
               <span class="tour-card__dot"></span>
-              <span>Ближайший: <strong>19 июля</strong> · осталось 7 мест из 12</span>
+              <span>Ближайший: <strong>19 июля</strong></span>
             </div>
           </div>
           <div class="ticket__stub">
@@ -2020,7 +2039,7 @@ footer .logo { color: var(--ink); text-shadow: none; }
             <div class="tour-card__route">Цей → Дигория → Даргавс · 4 дня</div>
             <div class="tour-card__dates">
               <span class="tour-card__dot"></span>
-              <span>Ближайший: <strong>14 июля</strong> · осталось 6 мест из 10</span>
+              <span>Ближайший: <strong>14 июля</strong></span>
             </div>
           </div>
           <div class="ticket__stub">
@@ -2045,7 +2064,7 @@ footer .logo { color: var(--ink); text-shadow: none; }
             <div class="tour-card__route">Грозный → Аргун → Кезеной-Ам · 4 дня</div>
             <div class="tour-card__dates">
               <span class="tour-card__dot"></span>
-              <span>Ближайший: <strong>22 августа</strong> · осталось 5 мест из 10</span>
+              <span>Ближайший: <strong>22 августа</strong></span>
             </div>
           </div>
           <div class="ticket__stub">
@@ -2070,7 +2089,7 @@ footer .logo { color: var(--ink); text-shadow: none; }
             <div class="tour-card__route">Самарканд → Бухара → Хива · 7 дней</div>
             <div class="tour-card__dates">
               <span class="tour-card__dot"></span>
-              <span>Ближайший: <strong>4 октября</strong> · осталось 9 мест из 12</span>
+              <span>Ближайший: <strong>4 октября</strong></span>
             </div>
           </div>
           <div class="ticket__stub">
@@ -2094,7 +2113,7 @@ footer .logo { color: var(--ink); text-shadow: none; }
             <div class="tour-card__route">Мурманск → Териберка → океан · 4 дня</div>
             <div class="tour-card__dates">
               <span class="tour-card__dot"></span>
-              <span>Ближайший: <strong>3 ноября</strong> · осталось 4 места из 10</span>
+              <span>Ближайший: <strong>3 ноября</strong></span>
             </div>
           </div>
           <div class="ticket__stub">
@@ -2121,22 +2140,16 @@ footer .logo { color: var(--ink); text-shadow: none; }
         <div class="upcoming__item">
           <div class="upcoming__date">05 июля</div>
           <div class="upcoming__where">Дагестан · 6 дней</div>
-          <div class="upcoming__progress"><div class="upcoming__progress__fill" style="width:70%"></div></div>
-          <div class="upcoming__seats">осталось <strong>3 места из 10</strong></div>
         </div>
 
         <div class="upcoming__item">
           <div class="upcoming__date">12 июля</div>
           <div class="upcoming__where">Грузия · 7 дней</div>
-          <div class="upcoming__progress"><div class="upcoming__progress__fill" style="width:58%"></div></div>
-          <div class="upcoming__seats">осталось <strong>5 мест из 12</strong></div>
         </div>
 
         <div class="upcoming__item">
           <div class="upcoming__date">19 июля</div>
           <div class="upcoming__where">Грузия + Армения · 5 дней</div>
-          <div class="upcoming__progress"><div class="upcoming__progress__fill" style="width:42%"></div></div>
-          <div class="upcoming__seats">осталось <strong>7 мест из 12</strong></div>
         </div>
 
         <div class="upcoming__note">
@@ -2750,11 +2763,6 @@ function openTour(dest) {
     </div>`;
   const inc = (t.included || INCLUDED).map(x => `<li>${x}</li>`).join('');
   const out = (t.notIncluded || NOT_INCLUDED).map(x => `<li>${x}</li>`).join('');
-  const gal = (GALLERIES[dest] || []).map((src, i) => `
-    <figure class="ts-gallery__item">
-      <img src="${src}" alt="Фото из тура «${t.name}»" loading="lazy">
-      ${GALLERY_CAPS[i] ? `<figcaption>${GALLERY_CAPS[i]}</figcaption>` : ''}
-    </figure>`).join('');
 
   document.getElementById('tsContent').innerHTML = `
     <div class="ts-hero">
@@ -2767,7 +2775,6 @@ function openTour(dest) {
       <div class="ts-fact"><div class="ts-fact__num">${t.days}</div><div class="ts-fact__label">дней</div></div>
       <div class="ts-fact"><div class="ts-fact__num">${t.group}</div><div class="ts-fact__label">человек в группе</div></div>
       <div class="ts-fact"><div class="ts-fact__num">${t.next}</div><div class="ts-fact__label">ближайший заезд</div></div>
-      <div class="ts-fact"><div class="ts-fact__num">${t.spots}</div><div class="ts-fact__label">осталось</div></div>
     </div>
     <div class="ts-body">
       <div class="ts-block">
@@ -2776,30 +2783,30 @@ function openTour(dest) {
       </div>
       ${hotels}
       <div class="ts-block">
-        <div class="ts-block__h">Как прошёл прошлый заезд</div>
-        <p class="ts-gallery__note">Живые кадры именно с этого маршрута — не сток. Так и проходит: маленькой компанией, без спешки, с общими ужинами и той самой смотровой.</p>
-        <div class="ts-gallery">${gal}</div>
-      </div>
-      <div class="ts-block">
-        <div class="ts-block__h">Что входит и что нет</div>
-        <div class="ts-cols">
-          <div>
+        <div class="ts-block__h">Что входит в стоимость</div>
+        <div class="ts-inout">
+          <div class="ts-inout__card ts-inout__card--in">
+            <div class="ts-inout__cap"><span class="ts-inout__badge ts-inout__badge--in">Включено</span></div>
             <ul class="ts-list ts-list--in">${inc}</ul>
           </div>
-          <div>
+          <div class="ts-inout__card ts-inout__card--out">
+            <div class="ts-inout__cap"><span class="ts-inout__badge ts-inout__badge--out">Оплачивается отдельно</span></div>
             <ul class="ts-list ts-list--out">${out}</ul>
           </div>
         </div>
-        <div class="ts-note">Состав по каждому направлению немного отличается — точный список пришлю при бронировании. Цена финальная, без доплат на месте.</div>
       </div>
       <div class="ts-block">
         <div class="ts-cta">
-          <div>
-            ${t.priceOld ? `<div class="ts-cta__price-old">${t.priceOld} ₽</div>` : ''}
-            <div class="ts-cta__price">${t.price} ₽ <small>/ с человека</small></div>
-            ${t.prepay ? `<div class="ts-cta__prepay">Предоплата всего ${t.prepay} ₽ — бронирует место</div>` : ''}
+          <div class="ts-cta__info">
+            <div class="ts-cta__label">Стоимость тура</div>
+            <div class="ts-cta__row">
+              ${t.priceOld ? `<span class="ts-cta__price-old">${t.priceOld} ₽</span>` : ''}
+              <span class="ts-cta__price">${t.price} ₽</span>
+              <span class="ts-cta__per">/ с человека</span>
+            </div>
+            ${t.prepay ? `<div class="ts-cta__prepay"><span class="ts-cta__prepay-dot"></span>Предоплата всего ${t.prepay} ₽ — бронирует место</div>` : ''}
           </div>
-          <button class="btn btn-primary btn-arrow" onclick="bookFrom('${t.name.replace(/'/g, "\\'")}')">Забронировать место</button>
+          <button class="btn btn-primary btn-arrow ts-cta__btn" onclick="bookFrom('${t.name.replace(/'/g, "\\'")}')">Забронировать место</button>
         </div>
       </div>
     </div>`;
