@@ -1522,6 +1522,7 @@ footer .logo { color: var(--ink); text-shadow: none; }
 .ts-cta__price-old { font-size: 13px; color: var(--stone); text-decoration: line-through; }
 .ts-cta__price { font-family: 'Yeseva One', serif; font-size: 30px; }
 .ts-cta__price small { font-size: 13px; color: var(--stone); font-family: 'Golos Text'; }
+.ts-cta__prepay { margin-top: 6px; font-size: 13px; font-weight: 600; color: var(--sun-text); }
 /* галерея «как прошёл прошлый заезд» */
 .ts-gallery__note { font-size: 13.5px; color: var(--ink-soft); margin-bottom: 18px; max-width: 62ch; }
 .ts-gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
@@ -1952,8 +1953,7 @@ footer .logo { color: var(--ink); text-shadow: none; }
           </div>
           <div class="ticket__stub">
             <div>
-              <div class="tour-card__price-old">48 000 ₽</div>
-              <div class="tour-card__price">42 000 ₽</div>
+              <div class="tour-card__price">75 000 ₽</div>
             </div>
             <div class="ticket__actions">
               <button class="tour-card__more" onclick="openTour('Грузия')">Подробнее</button>
@@ -2561,7 +2561,7 @@ const TOURS = {
     route: "Владикавказ → Казбеги → Тбилиси → Кахетия → Батуми",
     img: "https://picsum.photos/id/29/900/500",
     days: 7, group: "10–12", spots: "5 мест", next: "12 июля",
-    priceOld: "48 000", price: "42 000",
+    priceOld: "", price: "75 000", prepay: "5 000",
     program: [
       ["Казбеги и дорога в Тбилиси", "Встреча в аэропорту Владикавказа, переход границы. Район Казбеги, подъём к Троицкой церкви на 2160 м с видом на Казбек, Арка Дружбы народов, Жинвальское водохранилище, крепость Ананури. Вечером — Тбилиси, отель, хинкали, хачапури и грузинское вино."],
       ["Старый Тбилиси", "Экскурсия по старому городу (3 часа): «Мать Грузия», кафе «Фрида», фуникулёр, прогулка на яхте и улочки старого Тбилиси. Вечером — грузинское застолье с мастер-классом по хинкали и хачапури, танцами, гитаристами, тостами и бесконечным вином."],
@@ -2576,6 +2576,20 @@ const TOURS = {
     hotels: [
       { name: "Отель в Тбилиси", sub: "4 ночи", dir: "hotel-tbilisi", count: 3 },
       { name: "Отель в Батуми", sub: "2 ночи", dir: "hotel-batumi", count: 3 }
+    ],
+    included: [
+      "Проживание: 4 ночи в Тбилиси + 2 ночи в Батуми, размещение по 2 человека",
+      "Завтраки и 1 пикник в виноградниках",
+      "Грузинское застолье с тамадой, мастер-классом по хинкали и хачапури, танцорами и артистами",
+      "Дегустация вина",
+      "Гид и сопровождающий на всё время тура",
+      "Трансфер по Грузии и встреча в аэропорту Владикавказа",
+      "Входные билеты на локации, серные бани, катание на яхте по морю"
+    ],
+    notIncluded: [
+      "Перелёт",
+      "Обеды и ужины",
+      "Личные траты"
     ]
   },
   "Армения": {
@@ -2734,8 +2748,8 @@ function openTour(dest) {
         }).join('')}
       </div>
     </div>`;
-  const inc = INCLUDED.map(x => `<li>${x}</li>`).join('');
-  const out = NOT_INCLUDED.map(x => `<li>${x}</li>`).join('');
+  const inc = (t.included || INCLUDED).map(x => `<li>${x}</li>`).join('');
+  const out = (t.notIncluded || NOT_INCLUDED).map(x => `<li>${x}</li>`).join('');
   const gal = (GALLERIES[dest] || []).map((src, i) => `
     <figure class="ts-gallery__item">
       <img src="${src}" alt="Фото из тура «${t.name}»" loading="lazy">
@@ -2781,8 +2795,9 @@ function openTour(dest) {
       <div class="ts-block">
         <div class="ts-cta">
           <div>
-            <div class="ts-cta__price-old">${t.priceOld} ₽</div>
+            ${t.priceOld ? `<div class="ts-cta__price-old">${t.priceOld} ₽</div>` : ''}
             <div class="ts-cta__price">${t.price} ₽ <small>/ с человека</small></div>
+            ${t.prepay ? `<div class="ts-cta__prepay">Предоплата всего ${t.prepay} ₽ — бронирует место</div>` : ''}
           </div>
           <button class="btn btn-primary btn-arrow" onclick="bookFrom('${t.name.replace(/'/g, "\\'")}')">Забронировать место</button>
         </div>
