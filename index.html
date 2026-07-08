@@ -1430,6 +1430,55 @@ footer .logo { color: var(--ink); text-shadow: none; }
 }
 .ts-day__title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
 .ts-day__text { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }
+
+/* ---- фото дня: плёночная лента ---- */
+.ts-rail { margin-top: 15px; }
+.ts-rail__head { display: flex; align-items: center; gap: 7px; margin-bottom: 9px; font-size: 12px; letter-spacing: .03em; color: var(--stone); }
+.ts-rail__head svg { width: 15px; height: 15px; opacity: .7; }
+.ts-rail__track {
+  display: flex; gap: 8px; overflow-x: auto; padding: 2px 2px 8px;
+  scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+  scroll-padding-left: 2px;
+}
+.ts-rail__track::-webkit-scrollbar { display: none; }
+.ts-rail__item {
+  flex: 0 0 auto; height: 210px; padding: 0; border: none; background: var(--sand);
+  border-radius: 14px; overflow: hidden; cursor: zoom-in; scroll-snap-align: start;
+  position: relative; box-shadow: 0 14px 34px -20px rgba(51,52,28,.4);
+}
+.ts-rail__item img { height: 100%; width: auto; max-width: none; object-fit: cover; transition: transform .7s cubic-bezier(.22,1,.36,1); }
+.ts-rail__item:hover img { transform: scale(1.06); }
+.ts-rail__item::after { content:''; position:absolute; inset:0; border-radius:14px; box-shadow: inset 0 0 0 1px rgba(51,52,28,.07); pointer-events:none; }
+@media (max-width: 560px) { .ts-rail__item { height: 156px; } }
+
+/* ---- где живём: отели ---- */
+.ts-hotels { display: grid; gap: 30px; }
+.ts-hotel__head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 12px; margin-bottom: 13px; }
+.ts-hotel__name { font-family: 'Yeseva One', serif; font-size: 20px; color: var(--ink); }
+.ts-hotel__nights {
+  font-size: 11.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
+  color: var(--sun-text); background: var(--sun-soft); padding: 4px 12px; border-radius: 999px;
+}
+.ts-rail--hotel .ts-rail__item { height: 250px; }
+@media (max-width: 560px) { .ts-rail--hotel .ts-rail__item { height: 188px; } }
+
+/* ---- лайтбокс ---- */
+.lightbox {
+  position: fixed; inset: 0; z-index: 3000; display: none;
+  background: rgba(26,26,12,.93); backdrop-filter: blur(7px); -webkit-backdrop-filter: blur(7px);
+  align-items: center; justify-content: center; padding: clamp(16px, 4vw, 40px); cursor: zoom-out; opacity: 0;
+  transition: opacity .32s ease;
+}
+.lightbox.open { display: flex; opacity: 1; }
+.lightbox img { max-width: 94vw; max-height: 92vh; width: auto; border-radius: 12px; box-shadow: 0 40px 90px -24px rgba(0,0,0,.75); animation: lbin .45s cubic-bezier(.22,1,.36,1); }
+@keyframes lbin { from { transform: scale(.93); opacity: 0 } to { transform: scale(1); opacity: 1 } }
+.lightbox__close {
+  position: absolute; top: 18px; right: 20px; width: 46px; height: 46px; border-radius: 50%; border: none;
+  background: rgba(255,255,255,.14); color: #fff; font-size: 24px; line-height: 1; cursor: pointer;
+  display: grid; place-items: center; transition: background .2s, transform .2s;
+}
+.lightbox__close:hover { background: rgba(255,255,255,.28); transform: rotate(90deg); }
+
 /* что входит / не входит */
 .ts-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
 @media (max-width: 560px) { .ts-cols { grid-template-columns: 1fr; } }
@@ -2451,6 +2500,12 @@ footer .logo { color: var(--ink); text-shadow: none; }
   </div>
 </div>
 
+<!-- ============ ЛАЙТБОКС ФОТО ============ -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox__close" onclick="closeLightbox()" aria-label="Закрыть">×</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
 <!-- ============ MODAL ЗАЯВКИ ============ -->
 <div class="modal" id="modal">
   <div class="modal__body">
@@ -2515,6 +2570,12 @@ const TOURS = {
       ["Мцхета и переезд в Батуми", "Выселение из отеля, выезд в солнечную Аджарию. По дороге — древняя столица Мцхета и храм Джвари, Мартвильский каньон на лодочках в тишине, пещера Прометея. Вечером — заселение в отель в Батуми, отдых."],
       ["Батуми", "Знакомство с городом: пляж и море (если позволяет погода) или прогулка по Батуми. Вечером на закате — катание на яхте с фруктами и вином."],
       ["Боржоми и вылет", "Завтрак, окончание тура. Трансфер в аэропорт Батуми или Тбилиси — по дороге в Тбилиси заезжаем в Боржоми."]
+    ],
+    photoBase: "assets/georgia",
+    dayCounts: [6, 8, 7, 8, 7, 7, 2],
+    hotels: [
+      { name: "Отель в Тбилиси", sub: "4 ночи", dir: "hotel-tbilisi", count: 3 },
+      { name: "Отель в Батуми", sub: "2 ночи", dir: "hotel-batumi", count: 3 }
     ]
   },
   "Армения": {
@@ -2635,14 +2696,44 @@ const GALLERIES = {
 function openTour(dest) {
   const t = TOURS[dest];
   if (!t) return;
-  const days = t.program.map((d, i) => `
+  const pad = n => String(n).padStart(2, '0');
+  const railFrom = (paths, mod = '') => !paths.length ? '' : `
+    <div class="ts-rail ${mod}">
+      <div class="ts-rail__track">
+        ${paths.map(src => `<button class="ts-rail__item" type="button" onclick="openLightbox('${src}')"><img src="${src}" loading="lazy" alt=""></button>`).join('')}
+      </div>
+    </div>`;
+  const days = t.program.map((d, i) => {
+    const cnt = (t.dayCounts && t.dayCounts[i]) || 0;
+    const paths = Array.from({ length: cnt }, (_, k) => `${t.photoBase}/d${i + 1}/${pad(k + 1)}.jpg`);
+    return `
     <div class="ts-day">
       <div class="ts-day__num">${i + 1}</div>
       <div>
         <div class="ts-day__title">${d[0]}</div>
         <div class="ts-day__text">${d[1]}</div>
+        ${railFrom(paths)}
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
+  const hotels = !t.hotels ? '' : `
+    <div class="ts-block">
+      <div class="ts-block__h">Где вы будете жить</div>
+      <p class="ts-gallery__note">Реальные отели этого маршрута — фото с прошлых заездов. Комфортное жильё в центре, чтобы вечером далеко не ехать.</p>
+      <div class="ts-hotels">
+        ${t.hotels.map(h => {
+          const hp = Array.from({ length: h.count }, (_, k) => `${t.photoBase}/${h.dir}/${pad(k + 1)}.jpg`);
+          return `
+          <div class="ts-hotel">
+            <div class="ts-hotel__head">
+              <div class="ts-hotel__name">${h.name}</div>
+              <div class="ts-hotel__nights">${h.sub}</div>
+            </div>
+            ${railFrom(hp, 'ts-rail--hotel')}
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`;
   const inc = INCLUDED.map(x => `<li>${x}</li>`).join('');
   const out = NOT_INCLUDED.map(x => `<li>${x}</li>`).join('');
   const gal = (GALLERIES[dest] || []).map((src, i) => `
@@ -2669,6 +2760,7 @@ function openTour(dest) {
         <div class="ts-block__h">Программа по дням</div>
         ${days}
       </div>
+      ${hotels}
       <div class="ts-block">
         <div class="ts-block__h">Как прошёл прошлый заезд</div>
         <p class="ts-gallery__note">Живые кадры именно с этого маршрута — не сток. Так и проходит: маленькой компанией, без спешки, с общими ужинами и той самой смотровой.</p>
@@ -2703,6 +2795,18 @@ function closeTour() {
   document.getElementById('tourSheet').classList.remove('open');
   document.body.style.overflow = '';
 }
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  if (!document.getElementById('tourSheet').classList.contains('open')) document.body.style.overflow = '';
+}
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && document.getElementById('lightbox').classList.contains('open')) closeLightbox();
+});
 function bookFrom(name) {
   closeTour();
   openModal(name);
